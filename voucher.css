@@ -1,0 +1,566 @@
+/* =======================================
+   1. CÀI ĐẶT CƠ BẢN (BASE)
+======================================= */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background-color: #f8f7f7;
+}
+
+.container {
+    width: calc(100% - 80px);
+    margin-left: 80px;     
+    padding: 0 0 20px 0;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* =======================================
+   2. MENU TRÁI (DESKTOP)
+======================================= */
+.nav-right {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
+    align-items: flex-start;
+    overflow: hidden;
+    width: 80px;
+    transition: width 0.3s ease;
+    z-index: 1000;
+    background-color: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-right:hover {
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 36px;
+    font-family: 'Cinzel', serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 0;
+    margin-top: 40px;
+    margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50px;
+    transition: width 0.3s ease;
+    transform: translateX(-5px);
+}
+
+.nav-right:hover .logo {
+    transform: translateX(-5px);
+    width: 150px;
+}
+
+.nav-right-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.nav-right-menu-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.menu-icon {
+    display: block;
+    margin-bottom: 30px;
+    width: 95%;
+    transition: 0.2s;
+}
+
+.menu-icon.menu2, .menu-icon a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0 10px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.menu-icon svg {
+    width: 35px;
+    height: 35px;
+    fill: #000;
+    flex-shrink: 0;
+}
+
+.icon-text {
+    font-size: 20px;
+    padding-left: 15px;
+    margin: 0;
+    font-family: 'Source Code Pro', sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.5s ease;
+}
+
+.nav-right:hover .icon-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.menu-icon:hover {
+    font-weight: bolder;
+    background-color: rgb(255, 255, 255, 0.2);
+    border-radius: 0 24px 24px 0;
+}
+
+.menu-icon:hover .icon-text {
+    font-size: 30px;
+    transition: all 0.3s ease;
+}
+
+/* =======================================
+   3. NỘI DUNG CHÍNH (DESKTOP)
+======================================= */
+.top-logo {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+.top-logo p {
+    font-family: 'Cinzel', serif;
+    font-size: 40px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.roblox-box {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.box3 {
+    background-color: black;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 35px 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.box3.one svg { width: 200px; height: 200px; fill: white; }
+.box3.two svg { width: 100px; height: 100px; fill: white; }
+
+.box3 p {
+    color: white;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 40px;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.post {
+    margin: 0; 
+    width: 100%;
+    max-width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+/* Bộ Lọc (Bo viên thuốc) */
+.search-filters {
+    display: flex;
+    gap: 40px;
+    padding: 50px 20px 20px 30px; 
+    font-family: 'Source Code Pro', monospace;
+    font-size: 20px;
+    align-items: center;
+    overflow-x: auto;
+    text-transform: uppercase;
+    justify-content: flex-start; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-item {
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.filter-item.active {
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Trạm Đổi Quà */
+.station-section {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.station-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 36px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.station-block {
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.station-banner {
+    width: 100%;
+    height: 380px; 
+    background-color: #555555; 
+}
+
+.station-products {
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-around; 
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    width: 28%; 
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.product-name {
+    font-size: 18px;
+    margin: 0 0 25px 0;
+    text-align: left;
+}
+
+.product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-get {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 20px; 
+    font-family: 'Source Code Pro', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-get:hover {
+    transform: scale(1.05);
+    background-color: #ddd;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+}
+
+.r-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Ẩn Menu Đáy trên Desktop */
+.mobile-bottom-nav {
+    display: none;
+}
+
+/* =========================================================
+   4. GIAO DIỆN ĐIỆN THOẠI & IPAD (Màn hình dưới 1348px)
+========================================================= */
+@media (max-width: 1348px) {
+    .nav-right { display: none !important; }
+    
+    .container {
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: 120px;
+    }
+
+    .top-logo {
+        display: block !important; 
+        margin: 20px 0 25px 0;
+    }
+    .top-logo p { font-size: 32px; }
+
+    .roblox-box {
+        padding: 0 !important; 
+        gap: 20px !important; 
+        flex-wrap: nowrap !important;   
+        justify-content: center !important; 
+    }
+
+    .box3 {
+        width: 42% !important; 
+        max-width: 180px !important; 
+        aspect-ratio: 1 / 1 !important; 
+        height: auto !important;
+        padding: 0 !important; 
+        justify-content: center !important; 
+        gap: 15px !important; 
+    }
+
+    .box3.one svg { width: 50px !important; height: 50px !important; }
+    .box3.two svg { width: 40px !important; height: 40px !important; }
+    .box3 p { 
+        font-size: 16px !important; 
+        text-transform: uppercase !important; 
+    }
+
+    .search-filters {
+        padding: 30px 20px 20px 20px; 
+        gap: 15px;
+        font-size: 12px;
+    }
+
+    .station-section { margin-top: 10px; }
+    .station-title { font-size: 20px; font-weight: normal; margin-bottom: 15px; }
+    .station-banner { height: 180px; }
+    
+    .station-products { padding: 15px; gap: 5px; }
+    .product-item { width: 31%; }
+    .product-name { font-size: 11px; margin-bottom: 10px; }
+    .btn-get { padding: 5px 12px; font-size: 12px; }
+    .product-price { font-size: 11px; gap: 3px; }
+    .r-icon { width: 14px; height: 14px; font-size: 9px; border-width: 1px; }
+
+    /* Fix Menu Đáy nổi lơ lửng */
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+    }
+    
+    .nav-circle {
+        width: 50px; 
+        height: 50px; 
+        background-color: black; 
+        border-radius: 50%; 
+        flex-shrink: 0;
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .nav-pill {
+        width: 250px; 
+        height: 50px; 
+        background-color: black; 
+        border-radius: 30px;
+        display: flex; 
+        justify-content: space-around; 
+        align-items: center; 
+        padding: 0 10px;
+    }
+
+    .nav-pill svg { 
+        width: 24px !important; 
+        height: 24px !important; 
+        fill: none !important; 
+        stroke: white !important; 
+        stroke-width: 2 !important; 
+        cursor: pointer; 
+    }
+}
+
+/* =======================================
+   5. GLASS MODAL POPUP (HIỆU ỨNG KÍNH MỜ)
+======================================= */
+.glass-modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+}
+
+.glass-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: rgba(30, 30, 30, 0.65); 
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 24px; 
+    padding: 50px 30px;
+    text-align: center;
+    max-width: 450px;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-modal.show .modal-content {
+    transform: scale(1);
+}
+
+.icon-circle {
+    width: 160px;
+    height: 160px;
+    background-color: #dfdfdf; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.icon-circle svg { width: 90px; height: 90px; }
+
+.modal-text {
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =======================================
+   6. BẢNG TÌM KIẾM (SEARCH) TRƯỢT XUỐNG
+======================================= */
+.search-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99999;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex; align-items: flex-start; justify-content: center;
+}
+
+.search-sheet {
+    background-color: white; 
+    width: 100%; 
+    max-width: 1000px;
+    max-height: 280px; 
+    padding-top: 20px; 
+    border-radius: 0 0 20px 20px; 
+    display: flex; flex-direction: column;
+    transform: translateY(-100%); 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), max-height 0.4s ease;
+    text-align: left; 
+    overflow: hidden; 
+}
+
+.search-sheet.expanded { max-height: 85vh; }
+.search-sheet.expanded .search-suggestions { opacity: 1; transform: translateY(0); }
+.search-overlay.active { opacity: 1; visibility: visible; }
+.search-overlay.active .search-sheet { transform: translateY(0); }
+
+.search-tags { display: flex; gap: 10px; padding: 10px 20px; overflow-x: auto; flex-shrink: 0; }
+.search-tags::-webkit-scrollbar { display: none; }
+.tag-item {
+    background-color: black; color: white;
+    padding: 8px 18px; border-radius: 20px;
+    font-family: 'Cinzel', serif; font-size: 14px; 
+    white-space: nowrap; cursor: pointer;
+}
+
+.search-input-area { display: flex; gap: 15px; padding: 15px 20px; align-items: center; }
+.search-box {
+    display: flex; flex-grow: 1; background-color: #000; 
+    border-radius: 8px; padding: 12px 15px; align-items: center;
+}
+.search-box input {
+    background: transparent; border: none; color: white; flex-grow: 1; 
+    font-family: 'Source Code Pro', monospace; outline: none; font-size: 14px;
+}
+
+.search-suggestions { 
+    padding: 10px 20px; opacity: 0;
+    transform: translateY(-20px); transition: all 0.3s ease;
+}
+.suggestion-title { font-family: 'Source Code Pro', monospace; font-size: 14px; letter-spacing: 1px; color: #555;}
+
+.avatar { width: 40px; height: 40px; background-color: #ddd; border-radius: 50%; flex-shrink: 0; }
+.my-avatar { background-color: #000; }
+.send-btn { background: transparent; border: none; cursor: pointer; display: flex; align-items: center; padding: 0; }
+.drag-handle { width: 40px; height: 5px; background-color: #222; border-radius: 5px; margin: 15px auto; }

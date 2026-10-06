@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header riêng cho Mobile -->
+        <div class="mobile-header">
+            <h1 class="logo-text">RE:CUP</h1>
+            <div class="points-badge">
+                <span class="r-circle">R</span> 1.000
+            </div>
+        </div>
+
+        <div class="navigate">
+            <!-- Thanh Navigation Trái (Máy tính/iPad) -->
+            <div class="nav-right">
+                <p class="logo">Re:cup</p>
+                <div class="nav-right-menu">
+                    <ul class="nav-right-menu-list">
+                        <li class="menu-icon">
+                            <a href="index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                                </svg>
+                                <p class="icon-text">Home</p>
+                            </a>
+                        </li>
+                        <li class="menu-icon menu2" onclick="openSearch()">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            <p class="icon-text">Search</p>
+                        </li>
+                        <li class="menu-icon">
+                            <a href="./voucher.html">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_15_323)">
+                                    <path d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_15_323">
+                                    <rect width="21.6241" height="21.6241" fill="white" transform="translate(0 6.78656) rotate(-18.2909)"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>
+                                    
+                                <p class="icon-text">Voucher</p>
+                            </a>
+                        </li>
+                        <li class="menu-icon">
+                            <a href="QR.html">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    
+                                <p class="icon-text">Qr code</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Khu vực bài đăng chính -->
+            <div class="post">
+                <!-- Thanh cuộn Tag -->
+                <div class="slider">
+                    <button class="slide-btn btn-left" onclick="slideLeft()">❮</button>
+                    <div class="border-box" id="slider">
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                        <div class="box1">Deadline</div>
+                    </div>
+                    <button class="slide-btn btn-right" onclick="slideRight()">❯</button>
+                </div>
+
+                <!-- Bài Post -->
+                <div class="post-box">
+                    <div class="post-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+    
+                        <!-- Dán link file SVG của bạn vào thuộc tính src bên dưới -->
+                        <img class="avatar-tron" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOk08OPYcS5_XQ1Jfw1PqcqBjK58z9S5_tQp91iXlHIg&s=10">
+                        
+                        <span style="font-weight: bold; font-size: 14px;">Warau Coffee</span>
+                    </div>
+                    <div class="post-details">
+                        <p class="main">202 Trần Kim Xuyến, Hoà Xuân. Warau là một quán cà phê theo phong cách Wabi Sabi
+                            của Nhật...Xem thêm </p>
+                        <p class="hashtag">#chaydealine #docsach #thugian</p>
+                    </div>
+                    <div class="post-image">
+                        <div class="box-item">
+                            <div class="box2 one"></div>
+                            <div class="box2 two"></div>
+                            <div class="box2 three"></div>
+                            <div class="box2 four"></div>
+                        </div>
+                    </div>
+
+                    <div class="post-react">
+                        <div class="react-left">
+                            <div class="icon heart-icon" onclick="toggleLike(this)">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                            </div>
+                            <div class="icon cmt-icon" onclick="toggleComment(this); openComments()">
+                                <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                    <path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px"
+                                        d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="icon map-icon" onclick="toggleMaps(this)">
+                                <a href="https://maps.google.com/" target="_blank">
+                                    <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" id="_12_-_Maps"
+                                        data-name="12 - Maps" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(-1.477 -4.182)">
+                                            <path
+                                                d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z"
+                                                fill-rule="evenodd"></path>
+                                            <path
+                                                d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z"
+                                                fill-rule="evenodd"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="react-right">
+                            <p class="locate">
+                                <svg viewBox="-4 0 32 32" fill="#000000">
+                                    <path
+                                        d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z"
+                                        transform="translate(-106.000000, -413.000000)"></path>
+                                </svg> 5.1 km
+                            </p>
+                            <p class="star">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5"
+                                    stroke-linecap="round">
+                                    <path
+                                        d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" />
+                                </svg>8.5/10
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cụm điểm góc trên bên phải -->
+            <div class="nav-point">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSdrxXn8fz-3TLDdFCJr4LOqfaYyYN12GNDslZhHMQfA5fzFGbKyRv5w&s=10" alt="point">
+                <p>1.000</p>
+            </div>
+        </div>
+
+        <!-- ================= BẢNG BÌNH LUẬN ================= -->
+        <div class="comment-overlay" id="commentModal" onclick="closeComments(event)">
+            <div class="comment-sheet" onclick="event.stopPropagation()">
+                <div class="drag-handle"></div>
+                <div class="comment-list">
+                    <div class="comment-item">
+                        <div class="avatar"></div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="username">@ngoc.anh</span>
+                                <svg class="heart-cmt" viewBox="0 0 24 24" width="16" height="16"
+                                    onclick="toggleLike(this)">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="transparent" stroke="black" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <p class="comment-text">Cho em hỏi quán có khu vực ngồi ngoài trời để hút thuốc không ạ</p>
+                            <div class="comment-footer">
+                                <span>2 giờ trước</span>
+                                <span class="reply-btn">Trả lời</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-input-area">
+                    <div class="avatar my-avatar"></div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Thêm bình luận">
+                        <button class="send-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= BẢNG TÌM KIẾM ================= -->
+        <div class="search-overlay" id="searchModal" onclick="closeSearch(event)">
+            <div class="search-sheet" onclick="event.stopPropagation()">
+                <div class="search-tags">
+                    <span class="tag-item">DEADLINE</span>
+                    <span class="tag-item">CHILL</span>
+                    <span class="tag-item">VINTAGE</span>
+                    <span class="tag-item">STUDY</span>
+                </div>
+                <div class="search-input-area">
+                    <div class="avatar my-avatar"></div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm" oninput="showSuggestions(this)">
+                        <button class="send-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="search-filters">
+                    <span class="filter-item active" onclick="selectFilter(this)">Vị trí</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Giá</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Lượt thích</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Đánh giá</span>
+                </div>
+                <div class="search-suggestions">
+                    <p class="suggestion-title">ĐỀ XUẤT TÌM KIẾM</p>
+                </div>
+                <div class="drag-handle"></div>
+            </div>
+        </div>
+
+        <!-- ================= BOTTOM NAVIGATION (MOBILE ONLY) ================= -->
+        <div class="mobile-bottom-nav">
+            <!-- Nút vòng tròn đen (Có thể gắn link về trang chủ hoặc tuỳ ý bạn) -->
+            <div class="nav-circle" onclick="window.location.href='index.html'"></div>
+            
+            <div class="nav-pill">
+                <!-- 1. Nút Home -> Chuyển về index.html -->
+                <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                
+                <!-- 2. Nút Search -> Vẫn giữ nguyên hàm mở bảng tìm kiếm -->
+                <svg viewBox="0 0 24 24" onclick="openSearch()" style="cursor: pointer;">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                
+                <!-- 3. Nút Voucher -> Chuyển sang trang voucher.html -->
+                <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;">
+                    <path d="M4 7h16v10H4z" />
+                    <circle cx="4" cy="12" r="2" />
+                    <circle cx="20" cy="12" r="2" />
+                </svg>
+                
+                <!-- 4. Nút QR Code -> Chuyển sang trang qr-code.html -->
+                <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <rect x="7" y="7" width="3" height="3" />
+                    <rect x="14" y="7" width="3" height="3" />
+                    <rect x="7" y="14" width="3" height="3" />
+                    <rect x="14" y="14" width="3" height="3" />
+                </svg>
+            </div>
+        </div>
+
+</body>
+<script>
+    // Logic Cuộn slider
+    const slider = document.getElementById('slider');
+    function slideLeft() {
+        slider.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+    function slideRight() {
+        slider.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+
+    // Logic đổi màu tim và hoạt ảnh
+    function toggleLike(element) {
+        element.classList.toggle('liked');
+        let svg = element.querySelector('svg');
+        svg.style.animation = 'none';
+        setTimeout(function () {
+            svg.style.animation = 'heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        }, 10);
+    }
+
+    function toggleComment(element) {
+        element.classList.toggle('liked');
+        let svg = element.querySelector('svg');
+        svg.style.animation = 'none';
+        setTimeout(function () {
+            svg.style.animation = 'heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        }, 10);
+    }
+
+    // Logic Đóng Mở Comment
+    function openComments(element) {
+        document.getElementById('commentModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeComments(event) {
+        if (event.target.id === 'commentModal') {
+            document.getElementById('commentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Logic Đóng Mở Search
+    function openSearch() {
+        document.getElementById('searchModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSearch(event) {
+        if (event.target.id === 'searchModal') {
+            document.getElementById('searchModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Logic Chọn Filter (Vị trí, Giá, v.v.)
+    function selectFilter(clickedElement) {
+        let filters = document.querySelectorAll('.filter-item');
+        filters.forEach(function (filter) {
+            filter.classList.remove('active');
+        });
+        clickedElement.classList.add('active');
+    }
+
+    // Logic Sổ dài bảng Suggestion khi gõ chữ
+    function showSuggestions(inputField) {
+        let sheet = document.querySelector('.search-sheet');
+        if (inputField.value.trim().length > 0) {
+            sheet.classList.add('expanded');
+        } else {
+            sheet.classList.remove('expanded');
+        }
+    }
+</script>
+
+</html>
