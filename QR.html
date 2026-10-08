@@ -1,369 +1,287 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quét Mã QR - RE:CUP</title>
+    <title>Mã QR - RE:CUP</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css"> <!-- Kế thừa CSS gốc của bạn -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Nhúng thư viện quét QR bằng Camera -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
-        /* ================= CÀI ĐẶT CƠ BẢN CHO TRANG QUÉT QR ================= */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            font-family: 'Source Code Pro', monospace;
-            overflow: hidden; /* Ngăn chặn cuộn trang */
-            color: white;
-        }
-
-        /* Ghi đè CSS từ index.css để vô hiệu hóa nền trắng */
-        .container {
-            background-color: transparent;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            display: block; /* Vô hiệu hóa Flexbox cũ để không ảnh hưởng layout camera */
-        }
-
-        /* Menu điều hướng bên trái (Máy tính) - Chỉnh màu chữ thành trắng để nổi trên nền đen */
-        .nav-right {
-            background-color: rgba(0, 0, 0, 0.5); /* Nền đen trong suốt */
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-right:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .menu-icon a, .menu-icon.menu2 {
-            color: white;
-        }
-
-        .menu-icon svg {
-            fill: white;
-        }
-
-        .menu-icon:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* ================= KHUNG CHỨA CAMERA ================= */
-        .camera-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Nền hiển thị trước khi camera bật (hoặc giả lập luồng video) */
-            background-color: #1a1a1a; 
-            background-image: radial-gradient(circle, #333 1px, transparent 1px);
-            background-size: 20px 20px;
-            z-index: 1;
-        }
-
-        /* ================= LỚP PHỦ TỐI & KHUNG NGẮM ================= */
-        .qr-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none; /* Tránh cản trở sự kiện nhấp chuột */
-        }
-
-        /* Khung ngắm đục lỗ (Square Hole) */
-        .scan-box {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            /* Đổ bóng đen siêu lớn để tạo lớp phủ tối xung quanh lỗ hổng */
-            box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.65);
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Tạo 4 góc bo viền hình chữ "L" */
-        .scan-box::before, .scan-box::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            border: 4px solid transparent;
-            border-radius: 16px;
-        }
-        
-        .scan-box::before {
-            border-top-color: #a0c860; /* Xanh lá */
-            border-left-color: #a0c860;
-            width: 50px;
-            height: 50px;
-            top: 0;
-            left: 0;
-        }
-
-        .scan-box::after {
-            border-bottom-color: #a0c860;
-            border-right-color: #a0c860;
-            width: 50px;
-            height: 50px;
-            bottom: 0;
-            right: 0;
-        }
-
-        /* ================= TIA LASER QUÉT ================= */
-        .laser-line {
-            position: absolute;
-            top: 0;
-            left: 2%;
-            width: 96%;
-            height: 3px;
-            background-color: #a0c860;
-            border-radius: 2px;
-            box-shadow: 0 0 15px 4px rgba(160, 200, 96, 0.6);
-            animation: scanLaser 2.5s ease-in-out infinite;
-        }
-
-        @keyframes scanLaser {
-            0% { top: 2%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 96%; opacity: 0; }
-        }
-
-        /* ================= TIÊU ĐỀ & VĂN BẢN ================= */
-        .header-title {
-            position: absolute;
-            top: 50px;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .header-title h2 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 3px;
-            font-family: 'Cinzel', serif; /* Dùng font logo */
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .instruction-text {
-            position: absolute;
-            bottom: 150px; /* Nâng cao lên để nhường chỗ cho Menu đáy */
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .instruction-text p {
-            margin: 0;
-            font-size: 15px;
-            color: #e0e0e0;
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            backdrop-filter: blur(5px);
-        }
-
-        /* ================= NÚT ĐÓNG (QUAY LẠI) ================= */
-        .btn-back {
-            position: absolute;
-            top: 45px;
-            left: 100px; /* Dịch qua phải để né menu bên trái (Máy tính) */
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-            transition: background 0.3s ease;
-        }
-
-        .btn-back:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Tùy chỉnh Menu đáy (Mobile) sao cho nổi trên nền đen */
-        @media (max-width: 1348px) {
-            .btn-back {
-                left: 20px; /* Khôi phục vị trí bên trái cho màn hình nhỏ */
-            }
-            .mobile-bottom-nav {
-                display: flex; 
-                position: fixed; 
-                bottom: 30px; 
-                left: 50%;
-                transform: translateX(-50%);
-                align-items: center; gap: 10px; z-index: 1000;
-            }
-            /* Thiết kế lại màu cho menu ngang nổi trên nền Camera */
-            .nav-circle { 
-                background-color: white; 
-                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            }
-            .nav-pill { 
-                background-color: white; 
-                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            }
-            /* Đổi biểu tượng màu đen để tương phản với nền trắng của nút */
-            .nav-pill svg { 
-                stroke: black; 
-            }
-        }
+        /* Style riêng cho khu vực quét QR */
+        .qr-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+        .qr-tab-btn { background: transparent; border: 1px solid #555; color: #888; padding: 10px 25px; border-radius: 99px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: bold; transition: 0.3s; }
+        .qr-tab-btn.active { background: white; color: black; border-color: white; }
+        #reader { width: 100%; border-radius: 15px; overflow: hidden; border: 2px dashed #555; }
+        #reader video { border-radius: 15px; object-fit: cover; }
     </style>
 </head>
 <body>
-
     <div class="container">
-
-        <!-- ================= THỰC THỂ GIAO DIỆN CHUNG ================= -->
-        
-        <!-- Thanh Navigation Trái (Máy tính/iPad) -->
-        <div class="nav-right">
-            <p class="logo" style="color: white;">Re:cup</p>
-            <div class="nav-right-menu">
-                <ul class="nav-right-menu-list">
-                    <li class="menu-icon">
-                        <a href="index.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                            </svg>
-                            <p class="icon-text">Home</p>
-                        </a>
-                    </li>
-                    <li class="menu-icon menu2">
-                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <p class="icon-text">Search</p>
-                    </li>
-                    <li class="menu-icon">
-                        <a href="./voucher.html">
-                            <!-- SVG Voucher -->
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_15_323)">
-                                <path d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_15_323">
-                                <rect width="21.6241" height="21.6241" fill="white" transform="translate(0 6.78656) rotate(-18.2909)"/>
-                                </clipPath>
-                                </defs>
-                            </svg>
-                            <p class="icon-text">Voucher</p>
-                        </a>
-                    </li>
-                    <li class="menu-icon">
-                        <a href="">
-                            <!-- SVG QR Code -->
-                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2.5116 12.1548H18.4884" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p class="icon-text">Qr code</p>
-                        </a>
-                    </li>
-                </ul>
+        <!-- ================= HEADER MOBILE ================= -->
+        <div class="mobile-header">
+            <h1 class="logo-text">RE:CUP</h1>
+            <div class="points-badge">
+                <span class="r-circle">R</span> 1.000
             </div>
         </div>
 
-        <!-- ================= GIAO DIỆN QUÉT QR CHÍNH ================= -->
+        <div class="navigate">
+            <!-- ================= MENU TRÁI (DESKTOP) ================= -->
+            <div class="nav-right">
+                <p class="logo">Re:cup</p>
+                <div class="nav-right-menu">
+                    <ul class="nav-right-menu-list">
+                        <li class="menu-icon">
+                            <a href="index.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+                                <p class="icon-text">Home</p>
+                            </a>
+                        </li>
+                        <li class="menu-icon menu2" onclick="openSearch()">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <p class="icon-text">Search</p>
+                        </li>
+                        <li class="menu-icon">
+                            <a href="voucher.html">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_15_323)"><path d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_15_323"><rect width="21.6241" height="21.6241" fill="white" transform="translate(0 6.78656) rotate(-18.2909)"/></clipPath></defs></svg>
+                                <p class="icon-text">Voucher</p>
+                            </a>
+                        </li>
+                        <li class="menu-icon">
+                        <a href="QR.html"   >
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <p class="icon-text" style="font-weight: bold;">Qr code</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- Nền Camera mô phỏng -->
-        <div class="camera-container">
-            <!-- Luồng Video thực tế sẽ nằm tại đây -->
-        </div>
+            <!-- ================= CỤM MAIN CHỨA MÃ QR ================= -->
+            <div class="post" style="display: flex; justify-content: center; align-items: center; min-height: 85vh; padding: 20px;">
+                <div class="qr-container" style="background: #111; padding: 40px 30px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); width: 100%; max-width: 480px; text-align: center; color: white; height: fit-content;">
+                    <h1 style="font-family: 'Cinzel', serif; margin-top: 0; font-size: 32px; letter-spacing: 3px; margin-bottom: 30px;">RE:CUP</h1>
+                    
+                    <!-- Tabs chuyển đổi -->
+                    <div class="qr-tabs" style="margin-bottom: 35px;">
+                        <button class="qr-tab-btn active" id="btn-my-qr" onclick="switchTab('my-qr')" style="font-size: 15px; padding: 12px 35px;">Mã của tôi</button>
+                        <button class="qr-tab-btn" id="btn-scan-qr" onclick="switchTab('scan-qr')" style="font-size: 15px; padding: 12px 35px;">Quét mã</button>
+                    </div>
 
-        <!-- Nút Trở Về (Dùng History API) -->
-        <button class="btn-back" onclick="history.back()">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-        </button>
+                    <!-- VIEW 1: Mã QR của user -->
+                    <div id="view-my-qr">
+                        <div style="background: white; padding: 20px; border-radius: 20px; display: inline-block; margin-bottom: 30px;">
+                            <!-- Tăng kích thước lấy mã từ API lên 300x300 và thẻ img lên 280px -->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=RECUP-MEMBER-2026" alt="QR Code" style="width: 280px; height: 280px; display: block;">
+                        </div>
+                        <div style="border-top: 1px dashed #333; padding-top: 25px; display: flex; justify-content: space-between; align-items: center; padding-left: 15px; padding-right: 15px;">
+                            <span style="font-size: 16px; color: #ccc;">Thành viên</span>
+                            <span style="font-weight: bold; font-family: 'Source Code Pro', monospace; font-size: 20px; display: flex; align-items: center;">
+                                <span class="r-circle" style="background: white; color: black; display: inline-flex; justify-content: center; align-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 14px; font-weight: bold; margin-right: 8px;">R</span>1.000
+                            </span>
+                        </div>
+                    </div>
 
-        <!-- Tiêu Đề -->
-        <div class="header-title">
-            <h2>QUÉT MÃ</h2>
-        </div>
+                    <!-- VIEW 2: Camera Quét mã -->
+                    <div id="view-scan-qr" style="display: none;">
+                        <div id="reader" style="border-radius: 20px; overflow: hidden; border: 2px dashed #555;"></div>
+                        <p id="scan-status" style="font-size: 15px; color: #888; margin-top: 20px;">Đang đợi cấp quyền Camera...</p>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Khung ngắm & Lớp phủ tối -->
-        <div class="qr-overlay">
-            <div class="scan-box">
-                <!-- Tia Laser -->
-                <div class="laser-line"></div>
+            <!-- Cụm điểm góc trên bên phải (Desktop) -->
+            <div class="nav-point">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSdrxXn8fz-3TLDdFCJr4LOqfaYyYN12GNDslZhHMQfA5fzFGbKyRv5w&s=10" alt="point">
+                <p>1.000</p>
             </div>
         </div>
 
-        <!-- Dòng chú thích -->
-        <div class="instruction-text">
-            <p>Đưa mã QR vào khung ngắm<br>Hệ thống sẽ tự động nhận diện</p>
+        <!-- ================= BẢNG TÌM KIẾM (Y hệt trang chủ) ================= -->
+        <div class="search-overlay" id="searchModal" onclick="closeSearch(event)">
+            <div class="search-sheet" onclick="event.stopPropagation()">
+                <div class="search-tags">
+                    <span class="tag-item" onclick="selectSearchTag(this)">DEADLINE</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">CHILL</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">VINTAGE</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">STUDY</span>
+                </div>
+                
+                <div class="search-input-area">
+                    <div class="avatar my-avatar"></div>
+                    <div class="search-box" style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 6px 12px; background: black; border-radius: 99px;">
+                        <div id="tagPillsContainer" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm" oninput="showSuggestions(this)" style="flex: 1; border: none; background: transparent; outline: none; color: white; min-width: 80px; font-size: 14px;">
+                        <button class="send-btn" style="background: none; border: none; cursor: pointer;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-filters">
+                    <span class="filter-item active" onclick="selectFilter(this)">Vị trí</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Giá</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Lượt thích</span>
+                    <span class="filter-item" onclick="selectFilter(this)">Đánh giá</span>
+                </div>
+                <div class="search-suggestions">
+                    <p class="suggestion-title">ĐỀ XUẤT TÌM KIẾM</p>
+                </div>
+                <div class="drag-handle"></div>
+            </div>
         </div>
 
-        <!-- ================= THỰC THỂ MENU DƯỚI ĐÁY (MOBILE) ================= -->
+        <!-- ================= BOTTOM NAVIGATION (MOBILE) ================= -->
         <div class="mobile-bottom-nav">
-            <!-- Nút vòng tròn đen (Có thể gắn link về trang chủ hoặc tuỳ ý bạn) -->
-            <div class="nav-circle" onclick="window.location.href='index.html'"></div>
-            
+            <div class="nav-circle" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; stroke: white; fill: none; stroke-width: 2;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+            </div>
             <div class="nav-pill">
-                <!-- 1. Nút Home -> Chuyển về index.html -->
-                <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                
-                <!-- 2. Nút Search -> Vẫn giữ nguyên hàm mở bảng tìm kiếm -->
-                <svg viewBox="0 0 24 24" onclick="openSearch()" style="cursor: pointer;">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                
-                <!-- 3. Nút Voucher -> Chuyển sang trang voucher.html -->
-                <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;">
-                    <path d="M4 7h16v10H4z" />
-                    <circle cx="4" cy="12" r="2" />
-                    <circle cx="20" cy="12" r="2" />
-                </svg>
-                
-                <!-- 4. Nút QR Code -> Chuyển sang trang qr-code.html -->
-                <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer;">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <rect x="7" y="7" width="3" height="3" />
-                    <rect x="14" y="7" width="3" height="3" />
-                    <rect x="7" y="14" width="3" height="3" />
-                    <rect x="14" y="14" width="3" height="3" />
-                </svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                <svg viewBox="0 0 24 24" onclick="openSearch()" style="cursor: pointer;"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;"><path d="M4 7h16v10H4z" /><circle cx="4" cy="12" r="2" /><circle cx="20" cy="12" r="2" /></svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer; stroke: black; fill: black;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><rect x="7" y="7" width="3" height="3" /><rect x="14" y="7" width="3" height="3" /><rect x="7" y="14" width="3" height="3" /><rect x="14" y="14" width="3" height="3" /></svg>
             </div>
         </div>
 
     </div>
 
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // ---------------- CAMERA LOGIC ----------------
+    let html5QrCode;
+    function switchTab(tabName) {
+        document.getElementById('btn-my-qr').classList.remove('active');
+        document.getElementById('btn-scan-qr').classList.remove('active');
+        document.getElementById('btn-' + tabName).classList.add('active');
+
+        if (tabName === 'my-qr') {
+            document.getElementById('view-my-qr').style.display = 'block';
+            document.getElementById('view-scan-qr').style.display = 'none';
+            stopCamera();
+        } else {
+            document.getElementById('view-my-qr').style.display = 'none';
+            document.getElementById('view-scan-qr').style.display = 'block';
+            startCamera();
+        }
+    }
+
+    function startCamera() {
+        const statusText = document.getElementById('scan-status');
+        statusText.innerText = "Đang mở Camera...";
+        if (!html5QrCode) { html5QrCode = new Html5Qrcode("reader"); }
+        html5QrCode.start(
+            { facingMode: "environment" }, 
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            (decodedText, decodedResult) => {
+                statusText.innerText = "Quét thành công!";
+                statusText.style.color = "#2ecc71";
+                if (decodedText.startsWith("http")) { window.location.href = decodedText; } 
+                else {
+                    alert("Nội dung mã QR: \n" + decodedText);
+                    stopCamera();
+                    switchTab('my-qr');
+                }
+            },
+            (errorMessage) => { }
+        ).then(() => { statusText.innerText = "Đưa mã QR vào khung hình"; })
+         .catch(err => {
+            statusText.innerText = "Không thể mở Camera. Vui lòng cấp quyền!";
+            statusText.style.color = "#e74c3c";
+        });
+    }
+
+    function stopCamera() {
+        if (html5QrCode) {
+            html5QrCode.stop().then(ignore => {}).catch(err => console.log(err));
+        }
+    }
+
+    // ---------------- SEARCH & SUPABASE LOGIC ----------------
+    const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB'; 
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let globalPosts = []; 
+    // Tải ngầm dữ liệu để Search hoạt động kể cả ở trang QR
+    async function loadDataForSearch() {
+        const { data, error } = await supabaseClient.from('trangchu-index').select('*');
+        if (!error && data) { globalPosts = data; }
+    }
+    loadDataForSearch();
+
+    function openSearch() { document.getElementById('searchModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeSearch(event) { if (event.target.id === 'searchModal') { document.getElementById('searchModal').classList.remove('active'); document.body.style.overflow = ''; } }
+    function selectFilter(clickedElement) { document.querySelectorAll('.filter-item').forEach(f => f.classList.remove('active')); clickedElement.classList.add('active'); }
+
+    function triggerSearch() {
+        let keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+        let activeTags = Array.from(document.querySelectorAll('.search-pill')).map(pill => pill.dataset.name.toLowerCase());
+        
+        let sheet = document.querySelector('.search-sheet');
+        let suggestionsContainer = document.querySelector('.search-suggestions');
+
+        if (keyword.length > 0 || activeTags.length > 0) {
+            sheet.classList.add('expanded');
+            let matchedPosts = globalPosts.filter(post => {
+                let name = (post.shop_name || '').toLowerCase();
+                let content = (post.content || '').toLowerCase();
+                let hashtags = (post.hashtags || '').toLowerCase();
+                
+                let matchKeyword = keyword === "" || name.includes(keyword) || content.includes(keyword) || hashtags.includes(keyword);
+                let matchTags = activeTags.every(tag => name.includes(tag) || content.includes(tag) || hashtags.includes(tag));
+                return matchKeyword && matchTags;
+            });
+
+            let html = `<p class="suggestion-title" style="margin-bottom: 10px; font-size: 11px; color: #888; font-weight: bold;">ĐỀ XUẤT TÌM KIẾM</p>`;
+            if (matchedPosts.length > 0) {
+                matchedPosts.forEach(post => {
+                    html += `
+                        <div class="suggestion-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                            <img src="${post.avatar_url}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <p style="font-weight: bold; font-size: 14px; margin: 0; color: #000;">${post.shop_name}</p>
+                                <p style="font-size: 12px; color: #666; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">${post.content}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<p style="font-size: 13px; color: #888; padding: 10px 0;">Không tìm thấy kết quả phù hợp</p>`;
+            }
+            suggestionsContainer.innerHTML = html;
+        } else {
+            sheet.classList.remove('expanded');
+            suggestionsContainer.innerHTML = `<p class="suggestion-title">ĐỀ XUẤT TÌM KIẾM</p>`;
+        }
+    }
+
+    function showSuggestions(inputField) { triggerSearch(); }
+
+    function selectSearchTag(element) {
+        let tagName = element.innerText.trim();
+        let container = document.getElementById('tagPillsContainer');
+        let existing = container.querySelectorAll('.search-pill');
+        if (!Array.from(existing).some(tag => tag.dataset.name === tagName)) {
+            let pill = document.createElement('span');
+            pill.className = 'search-pill';
+            pill.dataset.name = tagName;
+            pill.style.cssText = "background: white; color: black; padding: 3px 10px; border-radius: 99px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; font-weight: 500;";
+            pill.innerHTML = `${tagName} <span onclick="removeSearchTag(this)" style="cursor: pointer; font-weight: bold; font-size: 14px; line-height: 1; opacity: 0.6;">&times;</span>`;
+            container.appendChild(pill);
+        }
+        document.getElementById('searchInput').focus();
+        triggerSearch(); 
+    }
+
+    function removeSearchTag(closeBtn) {
+        closeBtn.parentElement.remove();
+        document.getElementById('searchInput').focus();
+        triggerSearch(); 
+    }
+</script>
 </body>
 </html>
