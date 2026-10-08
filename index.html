@@ -78,128 +78,19 @@
                 <div class="slider">
                     <button class="slide-btn btn-left" onclick="slideLeft()">❮</button>
                     <div class="border-box" id="slider">
-                        <div class="box1">Deadline</div>
-                        <div class="box1">Chill</div>
-                        <div class="box1">Vintage</div>
-                        <div class="box1">Study</div>
-                        <div class="box1">Check-in</div>
-                        <div class="box1">With friend</div>
-                        <div class="box1">Book</div>
+                        <div class="box1" onclick="searchByTag(this)">Deadline</div>
+                        <div class="box1" onclick="searchByTag(this)">Chill</div>
+                        <div class="box1" onclick="searchByTag(this)">Vintage</div>
+                        <div class="box1" onclick="searchByTag(this)">Study</div>
+                        <div class="box1" onclick="searchByTag(this)">Check-in</div>
+                        <div class="box1" onclick="searchByTag(this)">With friend</div>
+                        <div class="box1" onclick="searchByTag(this)">Book</div>
                     </div>
                     <button class="slide-btn btn-right" onclick="slideRight()">❯</button>
                 </div>
 
                 <!-- BÀI POST 1 -->
-                <div class="post-box">
-                    <div class="post-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                        <img class="avatar-tron" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOk08OPYcS5_XQ1Jfw1PqcqBjK58z9S5_tQp91iXlHIg&s=10" alt="avatar">
-                        <span style="font-weight: bold; font-size: 14px;">Warau Coffee</span>
-                    </div>
-                    <div class="post-details">
-                        <p class="main">202 Trần Kim Xuyến, Hoà Xuân. Warau là một quán cà phê theo phong cách Wabi Sabi của Nhật...Xem thêm </p>
-                        <p class="hashtag">#chaydealine #docsach #thugian</p>
-                    </div>
-                    <div class="post-image">
-                        <div class="box-item">
-                            <div class="box2 one"></div>
-                            <div class="box2 two"></div>
-                            <div class="box2 three"></div>
-                            <div class="box2 four"></div>
-                        </div>
-                    </div>
-                    <div class="post-react">
-                        <div class="react-left">
-                            <div class="icon heart-icon" onclick="toggleLike(this)">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                            </div>
-                            <div class="icon cmt-icon" onclick="openComments()">
-                                <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                                    <path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px" d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z"></path>
-                                </svg>
-                            </div>
-                            <div class="icon map-icon">
-                                <a href="https://maps.google.com/" target="_blank">
-                                    <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" id="_12_-_Maps" data-name="12 - Maps" xmlns="http://www.w3.org/2000/svg">
-                                        <g transform="translate(-1.477 -4.182)">
-                                            <path d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z" fill-rule="evenodd"></path>
-                                            <path d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z" fill-rule="evenodd"></path>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="react-right">
-                            <p class="locate">
-                                <svg viewBox="-4 0 32 32" fill="#000000">
-                                    <path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" transform="translate(-106.000000, -413.000000)"></path>
-                                </svg> 5.1 km
-                            </p>
-                            <p class="star">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round">
-                                    <path d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" />
-                                </svg>8.5/10
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BÀI POST 2 (COPY XUỐNG DƯỚI) -->
-                <div class="post-box">
-                    <div class="post-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                        <img class="avatar-tron" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOk08OPYcS5_XQ1Jfw1PqcqBjK58z9S5_tQp91iXlHIg&s=10" alt="avatar">
-                        <span style="font-weight: bold; font-size: 14px;">Warau Coffee</span>
-                    </div>
-                    <div class="post-details">
-                        <p class="main">202 Trần Kim Xuyến, Hoà Xuân. Warau là một quán cà phê theo phong cách Wabi Sabi của Nhật...Xem thêm </p>
-                        <p class="hashtag">#chaydealine #docsach #thugian</p>
-                    </div>
-                    <div class="post-image">
-                        <div class="box-item">
-                            <div class="box2 one"></div>
-                            <div class="box2 two"></div>
-                            <div class="box2 three"></div>
-                            <div class="box2 four"></div>
-                        </div>
-                    </div>
-                    <div class="post-react">
-                        <div class="react-left">
-                            <div class="icon heart-icon" onclick="toggleLike(this)">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                </svg>
-                            </div>
-                            <div class="icon cmt-icon" onclick="openComments()">
-                                <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                                    <path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px" d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z"></path>
-                                </svg>
-                            </div>
-                            <div class="icon map-icon">
-                                <a href="https://maps.google.com/" target="_blank">
-                                    <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" id="_12_-_Maps" data-name="12 - Maps" xmlns="http://www.w3.org/2000/svg">
-                                        <g transform="translate(-1.477 -4.182)">
-                                            <path d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z" fill-rule="evenodd"></path>
-                                            <path d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z" fill-rule="evenodd"></path>
-                                        </g>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="react-right">
-                            <p class="locate">
-                                <svg viewBox="-4 0 32 32" fill="#000000">
-                                    <path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" transform="translate(-106.000000, -413.000000)"></path>
-                                </svg> 5.1 km
-                            </p>
-                            <p class="star">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round">
-                                    <path d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" />
-                                </svg>8.5/10
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div id="post-feed"></div>
             </div> <!-- Kết thúc cụm Bài post chính -->
 
             <!-- Cụm điểm góc trên bên phải (Desktop) -->
@@ -248,23 +139,32 @@
         <!-- ================= BẢNG TÌM KIẾM ================= -->
         <div class="search-overlay" id="searchModal" onclick="closeSearch(event)">
             <div class="search-sheet" onclick="event.stopPropagation()">
+                <!-- Các thẻ tag phía trên trong bảng tìm kiếm -->
                 <div class="search-tags">
-                    <span class="tag-item">DEADLINE</span>
-                    <span class="tag-item">CHILL</span>
-                    <span class="tag-item">VINTAGE</span>
-                    <span class="tag-item">STUDY</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">DEADLINE</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">CHILL</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">VINTAGE</span>
+                    <span class="tag-item" onclick="selectSearchTag(this)">STUDY</span>
                 </div>
+                
                 <div class="search-input-area">
                     <div class="avatar my-avatar"></div>
-                    <div class="search-box">
-                        <input type="text" placeholder="Tìm kiếm" oninput="showSuggestions(this)">
-                        <button class="send-btn">
+                    <!-- Thanh tìm kiếm chứa các thẻ tag đã chọn bên trong -->
+                    <div class="search-box" style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 6px 12px; background: black; border-radius: 99px;">
+                        <!-- Nơi hiển thị các tag được click -->
+                        <div id="tagPillsContainer" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
+                        
+                        <!-- Ô input để gõ tìm kiếm thủ công -->
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm" oninput="showSuggestions(this)" style="flex: 1; border: none; background: transparent; outline: none; color: white; min-width: 80px; font-size: 14px;">
+                        
+                        <button class="send-btn" style="background: none; border: none; cursor: pointer;">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                             </svg>
                         </button>
                     </div>
                 </div>
+
                 <div class="search-filters">
                     <span class="filter-item active" onclick="selectFilter(this)">Vị trí</span>
                     <span class="filter-item" onclick="selectFilter(this)">Giá</span>
@@ -321,17 +221,119 @@
 
     </div> <!-- Kết thúc Container -->
 
+<<!-- Nhúng thư viện kết nối Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-    // Logic Cuộn slider
-    const slider = document.getElementById('slider');
-    function slideLeft() {
-        slider.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-    function slideRight() {
-        slider.scrollBy({ left: 300, behavior: 'smooth' });
+    const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB'; 
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Biến toàn cục để lưu trữ danh sách bài viết phục vụ tìm kiếm nhanh
+    let globalPosts = [];
+
+    // Công thức tính số km tự động bằng tọa độ thật
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        if (!lat1 || !lon1 || !lat2 || !lon2) return "??";
+        const R = 6371; 
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return (R * c).toFixed(1);
     }
 
-    // Logic đổi màu tim và hoạt ảnh
+    async function fetchPosts(userLat, userLng) {
+        const postFeed = document.getElementById('post-feed');
+        postFeed.innerHTML = '<p style="padding: 50px; text-align: center;">Đang tải dữ liệu...</p>'; 
+
+        const { data, error } = await supabaseClient.from('trangchu-index').select('*');
+
+        if (error) {
+            postFeed.innerHTML = `<p style="color:red; padding: 50px; text-align: center;">Lỗi kết nối: ${error.message}</p>`;
+            return;
+        }
+
+        // Lưu dữ liệu vào biến toàn cục để dùng cho tính năng tìm kiếm gợi ý
+        globalPosts = data;
+        postFeed.innerHTML = ''; 
+
+        data.forEach(post => {
+            let latitude = post.lat;
+            let longitude = post.lng || post.Ing; 
+            
+            let distanceText = "?? km";
+            if (userLat && userLng && latitude && longitude) {
+                distanceText = calculateDistance(userLat, userLng, latitude, longitude) + " km";
+            } else if (!userLat) {
+                distanceText = "Bật vị trí";
+            }
+
+            let addressText = post.address ? post.address : "";
+            let mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}`;
+
+            let postHTML = `
+            <div class="post-box">
+                <div class="post-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                    <img class="avatar-tron" src="${post.avatar_url}" alt="avatar">
+                    <span style="font-weight: bold; font-size: 14px;">${post.shop_name}</span>
+                </div>
+                <div class="post-details">
+                    <p class="main">${post.content}</p>
+                    <p class="hashtag">${post.hashtags}</p>
+                </div>
+                <div class="post-image">
+                    <div class="box-item">
+                        <div class="box2 one" style="background: url('${post.img_1 || post.Image_1 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 two" style="background: url('${post.img_2 || post.Image_2 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 three" style="background: url('${post.img_3 || post.Image_3 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 four" style="background: url('${post.img_4 || post.Image_4 || ''}') center/cover no-repeat;"></div>
+                    </div>
+                </div>
+                <div class="post-react">
+                    <div class="react-left">
+                        <div class="icon heart-icon" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg></div>
+                        <div class="icon cmt-icon" onclick="openComments()"><svg viewBox="0 0 24 24" fill="#000000"><path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px" d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z"></path></svg></div>
+                        
+                        <div class="icon map-icon">
+                            <a href="${mapsLink}" target="_blank" title="Xem bản đồ địa chỉ">
+                                <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" id="_12_-_Maps" data-name="12 - Maps" xmlns="http://www.w3.org/2000/svg" style="width: 22px; height: 22px; transform: translateY(2px);">
+                                    <g transform="translate(-1.477 -4.182)">
+                                        <path d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z" fill-rule="evenodd"></path>
+                                        <path d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z" fill-rule="evenodd"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="react-right" style="text-align: right;">
+                        <p class="locate" style="margin-bottom: 5px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; justify-content: flex-end; gap: 3px;">
+                            <svg viewBox="-4 0 32 32" fill="#E74C3C" style="width: 16px; height: 16px;">
+                                <path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" transform="translate(-106.000000, -413.000000)"></path>
+                            </svg>
+                            ${distanceText}
+                        </p>
+                        <p class="star" style="display: inline-flex; align-items: center; justify-content: flex-end; width: 100%;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" style="width: 20px; height: 20px; margin-right: 4px;">
+                                <path d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" />
+                            </svg>
+                            ${post.rating}/10
+                        </p>
+                    </div>
+                </div>
+            </div>`;
+            postFeed.innerHTML += postHTML;
+        });
+    }
+
+    // Logic Cuộn slider
+    const slider = document.getElementById('slider');
+    function slideLeft() { slider.scrollBy({ left: -300, behavior: 'smooth' }); }
+    function slideRight() { slider.scrollBy({ left: 300, behavior: 'smooth' }); }
+
+    // Logic đổi màu tim
     function toggleLike(element) {
         element.classList.toggle('liked');
         let svg = element.querySelector('svg');
@@ -368,20 +370,89 @@
     // Logic Chọn Filter
     function selectFilter(clickedElement) {
         let filters = document.querySelectorAll('.filter-item');
-        filters.forEach(function (filter) {
-            filter.classList.remove('active');
-        });
+        filters.forEach(filter => filter.classList.remove('active'));
         clickedElement.classList.add('active');
     }
 
-    // Logic Sổ bảng Suggestion
+    // KHI GÕ TÌM KIẾM: Tự động lọc bài viết và hiển thị vào khung .search-suggestions
     function showSuggestions(inputField) {
         let sheet = document.querySelector('.search-sheet');
-        if (inputField.value.trim().length > 0) {
+        let keyword = inputField.value.trim().toLowerCase();
+        let suggestionsContainer = document.querySelector('.search-suggestions');
+
+        if (keyword.length > 0) {
             sheet.classList.add('expanded');
+
+            // Lọc bài viết từ mảng globalPosts dựa trên tên quán, nội dung hoặc hashtag
+            let matchedPosts = globalPosts.filter(post => {
+                let name = (post.shop_name || '').toLowerCase();
+                let content = (post.content || '').toLowerCase();
+                let hashtags = (post.hashtags || '').toLowerCase();
+                return name.includes(keyword) || content.includes(keyword) || hashtags.includes(keyword);
+            });
+
+            let html = `<p class="suggestion-title" style="margin-bottom: 10px; font-size: 11px; color: #888; font-weight: bold;">ĐỀ XUẤT TÌM KIẾM</p>`;
+            
+            if (matchedPosts.length > 0) {
+                matchedPosts.forEach(post => {
+                    html += `
+                        <div class="suggestion-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                            <img src="${post.avatar_url}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <p style="font-weight: bold; font-size: 14px; margin: 0; color: #000;">${post.shop_name}</p>
+                                <p style="font-size: 12px; color: #666; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">${post.content}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<p style="font-size: 13px; color: #888; padding: 10px 0;">Không tìm thấy kết quả phù hợp</p>`;
+            }
+
+            suggestionsContainer.innerHTML = html;
         } else {
             sheet.classList.remove('expanded');
+            suggestionsContainer.innerHTML = `<p class="suggestion-title">ĐỀ XUẤT TÌM KIẾM</p>`;
         }
+    }
+
+    // Bấm vào các tag phía trên trong bảng tìm kiếm để tự điền vào thanh search
+    function selectSearchTag(element) {
+        let tagName = element.innerText.trim();
+        let container = document.getElementById('tagPillsContainer');
+        
+        let existing = container.querySelectorAll('.search-pill');
+        let alreadyExists = Array.from(existing).some(tag => tag.dataset.name === tagName);
+
+        if (!alreadyExists) {
+            let pill = document.createElement('span');
+            pill.className = 'search-pill';
+            pill.dataset.name = tagName;
+            pill.style.cssText = "background: white; color: black; padding: 3px 10px; border-radius: 99px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; font-weight: 500;";
+            
+            pill.innerHTML = `
+                ${tagName} 
+                <span onclick="removeSearchTag(this)" style="cursor: pointer; font-weight: bold; font-size: 14px; line-height: 1; opacity: 0.6;">&times;</span>
+            `;
+            container.appendChild(pill);
+        }
+        
+        document.getElementById('searchInput').focus();
+    }
+
+    function removeSearchTag(closeBtn) {
+        closeBtn.parentElement.remove();
+        document.getElementById('searchInput').focus();
+    }
+
+    // Chạy GPS và lấy bài viết khi mở web
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => fetchPosts(position.coords.latitude, position.coords.longitude),
+            (error) => fetchPosts(null, null)
+        );
+    } else {
+        fetchPosts(null, null);
     }
 </script>
 </body>
