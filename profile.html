@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân - RE:CUP</title>
+    <!-- Nhúng Font chữ chuẩn thiết kế -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <!-- Nhúng Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        /* Giao diện Profile phong cách Sáng - Sang Trọng (Modern Glass) */
+        body {
+            background-color: #f4f4f6;
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 20px 120px 20px;
+            box-sizing: border-box;
+        }
+
+        .profile-card-bright {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 420px;
+            width: 100%;
+            color: #111;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .profile-avatar-circle {
+            width: 85px;
+            height: 85px;
+            background: #000;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-avatar-circle svg {
+            stroke: white;
+        }
+
+        .profile-title {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            color: #000;
+        }
+
+        .profile-email {
+            font-family: 'Source Code Pro', monospace;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+            word-break: break-all;
+        }
+
+        .points-box-bright {
+            background: #f0f0f3;
+            border: 1px solid #e2e2e8;
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .points-label {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .points-value {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #000;
+        }
+
+        .r-badge {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-logout:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .btn-logout:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container profile-container">
+
+        <!-- ================= MENU TRÁI (DESKTOP) ================= -->
+        <div class="nav-right">
+            <p class="logo">Re:cup</p>
+            <div class="nav-right-menu">
+                <ul class="nav-right-menu-list">
+                    <li class="menu-icon">
+                        <a href="index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                            </svg>
+                            <p class="icon-text">Home</p>
+                        </a>
+                    </li>
+                    <li class="menu-icon menu2" onclick="window.location.href='index.html'">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z"
+                                stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="icon-text">Search</p>
+                    </li>
+                    <li class="menu-icon">
+                        <a href="voucher.html">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="icon-text">Voucher</p>
+                        </a>
+                    </li>
+                    <li class="menu-icon">
+                        <a href="QR.html">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548"
+                                    stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452"
+                                    stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526"
+                                    stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526"
+                                    stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="icon-text">Qr code</p>
+                        </a>
+                    </li>
+                    <li class="menu-icon" id="menuAuthItem">
+                        <a href="#" id="menuAuthLink" onclick="handleAuthClick(event)">
+                            <svg id="menuAuthIcon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                <polyline points="10 17 15 12 10 7" />
+                                <line x1="15" y1="12" x2="3" y2="12" />
+                            </svg>
+                            <p class="icon-text" id="menuAuthText">Log in</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= NỘI DUNG PROFILE CHÍNH (SÁNG) ================= -->
+        <div class="profile-card-bright">
+            <div class="profile-avatar-circle">
+                <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+
+            <h1 class="profile-title">TÀI KHOẢN CỦA TÔI</h1>
+            <p id="userEmail" class="profile-email">Đang tải thông tin...</p>
+
+            <div class="points-box-bright">
+                <span class="points-label">Điểm tích lũy</span>
+                <span class="points-value">
+                    <span class="r-badge">R</span> 1.000
+                </span>
+            </div>
+
+            <button onclick="handleLogout()" class="btn-logout">
+                ĐĂNG XUẤT
+            </button>
+        </div>
+
+        <!-- ================= BOTTOM NAVIGATION (MOBILE) ================= -->
+        <div class="mobile-bottom-nav">
+            <div class="nav-circle user-profile-circle" onclick="window.location.href='profile.html'">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+
+            <div class="nav-pill">
+                <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;">
+                    <path d="M4 7h16v10H4z" />
+                    <circle cx="4" cy="12" r="2" />
+                    <circle cx="20" cy="12" r="2" />
+                </svg>
+                <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <rect x="7" y="7" width="3" height="3" />
+                    <rect x="14" y="7" width="3" height="3" />
+                    <rect x="14" y="14" width="3" height="3" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT XỬ LÝ SUPABASE ================= -->
+    <script>
+        const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Kiểm tra phiên đăng nhập
+        async function checkUserProfile() {
+            const { data: { session }, error } = await supabaseClient.auth.getSession();
+
+            if (!session || !session.user) {
+                // Nếu chưa đăng nhập, chuyển trực tiếp về trang chủ không thông báo
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('userEmail').innerText = session.user.email;
+            }
+        }
+
+        // Hàm xử lý Đăng xuất (Tắt thông báo alert)
+        async function handleLogout() {
+            await supabaseClient.auth.signOut();
+            // Đăng xuất xong chuyển về index.html ngay
+            window.location.href = 'index.html';
+        }
+        // Hàm tự động kiểm tra trạng thái Đăng nhập và cập nhật Menu
+        async function checkAuthAndRenderMenu() {
+            if (typeof supabaseClient === 'undefined') return;
+
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                const authText = document.getElementById('menuAuthText');
+                const authIcon = document.getElementById('menuAuthIcon');
+
+                if (session && session.user) {
+                    // Đã đăng nhập: Đổi chữ thành "Profile" và đổi icon thành hình Avatar/User
+                    if (authText) authText.innerText = 'Profile';
+                    if (authIcon) {
+                        authIcon.setAttribute('viewBox', '0 0 24 24');
+                        authIcon.setAttribute('fill', 'none');
+                        authIcon.setAttribute('stroke', 'currentColor');
+                        authIcon.setAttribute('stroke-width', '1.5');
+                        authIcon.innerHTML = `
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                `;
+                    }
+                } else {
+                    // Chưa đăng nhập: Giữ nguyên Log in
+                    if (authText) authText.innerText = 'Log in';
+                    if (authIcon) {
+                        authIcon.innerHTML = `
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <polyline points="10 17 15 12 10 7" />
+                    <line x1="15" y1="12" x2="3" y2="12" />
+                `;
+                    }
+                }
+            } catch (err) {
+                console.error("Lỗi kiểm tra auth:", err);
+            }
+        }
+
+        // Xử lý khi bấm vào nút Menu trái
+        async function handleAuthClick(e) {
+            if (e) e.preventDefault();
+            if (typeof supabaseClient === 'undefined') return;
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+
+            if (session && session.user) {
+                window.location.href = 'profile.html';
+            } else {
+                if (typeof openLoginModal === 'function') {
+                    openLoginModal();
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+
+        // Chạy kiểm tra ngay khi tải xong trang và lắng nghe thay đổi
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthAndRenderMenu();
+            if (typeof supabaseClient !== 'undefined') {
+                supabaseClient.auth.onAuthStateChange(() => {
+                    checkAuthAndRenderMenu();
+                });
+            }
+        });
+
+        checkUserProfile();
+    </script>
+</body>
+
+</html>

@@ -334,6 +334,179 @@ body {
     display: none;
 }
 
+/* =======================================
+   7. POPUP ĐĂNG NHẬP (LOGIN MODAL)
+======================================= */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    color: white;
+    transform: scale(0.85) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-overlay.active .login-card {
+    transform: scale(1) translateY(0);
+}
+
+.close-login-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-login-btn:hover {
+    color: white;
+}
+
+.login-title {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin: 0 0 8px 0;
+}
+
+.login-subtitle {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-submit-login {
+    width: 100%;
+    padding: 14px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-submit-login:hover {
+    background: #e0e0e0;
+    transform: scale(1.02);
+}
+
+.login-divider {
+    margin: 20px 0;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-divider span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #141414;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #777;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.btn-google-login {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.btn-google-login:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes shakeCard {
+    0%, 100% { transform: scale(1) translateY(0) translateX(0); }
+    20%, 60% { transform: scale(1) translateY(0) translateX(-8px); }
+    40%, 80% { transform: scale(1) translateY(0) translateX(8px); }
+}
+
+.login-card.shake {
+    animation: shakeCard 0.4s ease-in-out;
+}
+
+.input-group input.input-error {
+    border-color: #e74c3c !important;
+    background: rgba(231, 76, 60, 0.1) !important;
+    transition: all 0.3s ease;
+}
+
 /* =========================================================
    4. GIAO DIỆN ĐIỆN THOẠI & IPAD (Màn hình dưới 1348px)
 ========================================================= */
@@ -437,6 +610,8 @@ body {
         cursor: pointer; 
     }
 }
+
+
 
 /* =======================================
    5. GLASS MODAL POPUP (HIỆU ỨNG KÍNH MỜ)

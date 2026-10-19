@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ - RE:CUP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <!-- ================= HEADER MOBILE ================= -->
@@ -34,22 +39,30 @@
                         </li>
                         <!-- Search -->
                         <li class="menu-icon menu2" onclick="openSearch()">
-                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11.8383 11.8321L16.625 16.625M13.4583 7.91667C13.4583 10.9773 10.9773 13.4583 7.91667 13.4583C4.85609 13.4583 2.375 10.9773 2.375 7.91667C2.375 4.85609 4.85609 2.375 7.91667 2.375C10.9773 2.375 13.4583 4.85609 13.4583 7.91667Z"
+                                    stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             <p class="icon-text">Search</p>
                         </li>
                         <!-- Voucher -->
                         <li class="menu-icon">
                             <a href="voucher.html">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_15_323)">
-                                    <path d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path
+                                            d="M13.6734 7.9606L6.82951 10.2228C6.0323 10.4863 5.63347 10.6181 5.3621 10.8523C5.00026 11.1645 4.77757 11.6078 4.74248 12.0845C4.71618 12.4419 4.84793 12.8405 5.11145 13.6377C6.52885 13.1692 8.05756 13.9381 8.52609 15.3555C8.99458 16.7729 8.22542 18.3019 6.80802 18.7704C7.07153 19.5677 7.20328 19.9662 7.43746 20.2377C7.74968 20.5994 8.19262 20.8225 8.66926 20.8575C9.02672 20.8838 9.42557 20.7521 10.2228 20.4886L17.0666 18.2264M13.6734 7.9606L17.0953 6.82951C17.8925 6.566 18.2911 6.43425 18.6486 6.46054C19.1252 6.49564 19.5684 6.71883 19.8806 7.08066C20.1148 7.35205 20.2465 7.75066 20.51 8.54786C19.0926 9.01639 18.3234 10.545 18.7919 11.9624C19.2604 13.3798 20.7892 14.1491 22.2066 13.6806C22.4701 14.4778 22.6019 14.8763 22.5756 15.2339C22.5405 15.7104 22.3175 16.1536 21.9558 16.4658C21.6843 16.6999 21.2858 16.8318 20.4886 17.0953L17.0666 18.2264M13.6734 7.9606L17.0666 18.2264"
+                                            stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
                                     </g>
                                     <defs>
-                                    <clipPath id="clip0_15_323">
-                                    <rect width="21.6241" height="21.6241" fill="white" transform="translate(0 6.78656) rotate(-18.2909)"/>
-                                    </clipPath>
+                                        <clipPath id="clip0_15_323">
+                                            <rect width="21.6241" height="21.6241" fill="white"
+                                                transform="translate(0 6.78656) rotate(-18.2909)" />
+                                        </clipPath>
                                     </defs>
                                 </svg>
                                 <p class="icon-text">Voucher</p>
@@ -58,14 +71,40 @@
                         <!-- QR Code -->
                         <li class="menu-icon">
                             <a href="QR.html">
-                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.1192 13.8096V16.7076C17.1192 16.9344 16.9344 17.1192 16.7076 17.1192H12.1548"
+                                        stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M12.1548 3.8808H16.7076C16.9344 3.8808 17.1192 4.0656 17.1192 4.2924V8.8452"
+                                        stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M3.88086 8.8452V4.2924C3.88086 4.0656 4.06565 3.8808 4.29245 3.8808H8.84526"
+                                        stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M3.88086 13.8096V16.7076C3.88086 16.9344 4.06565 17.1192 4.29245 17.1192H8.84526"
+                                        stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5"
+                                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <p class="icon-text">Qr code</p>
+                            </a>
+                        </li>
+                        <!-- Log in (CHỈ HIỆN TRÊN DESKTOP) -->
+                        <li class="menu-icon" id="menuAuthItem">
+                            <a href="#" id="menuAuthLink" onclick="handleAuthClick(event)">
+                                <svg id="menuAuthIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                    <polyline points="10 17 15 12 10 7" />
+                                    <line x1="15" y1="12" x2="3" y2="12" />
+                                </svg>
+                                <p class="icon-text" id="menuAuthText">Log in</p>
                             </a>
                         </li>
                     </ul>
@@ -76,17 +115,16 @@
             <div class="post">
                 <!-- Thanh cuộn Tag -->
                 <div class="slider">
-                    <button class="slide-btn btn-left" onclick="slideLeft()">❮</button>
+
                     <div class="border-box" id="slider">
                         <div class="box1" onclick="searchByTag(this)">Deadline</div>
                         <div class="box1" onclick="searchByTag(this)">Chill</div>
                         <div class="box1" onclick="searchByTag(this)">Vintage</div>
                         <div class="box1" onclick="searchByTag(this)">Study</div>
-                        <div class="box1" onclick="searchByTag(this)">Check-in</div>
+                        <div class="box1" onclick="searchByTag(this)">Checkin</div>
                         <div class="box1" onclick="searchByTag(this)">With friend</div>
                         <div class="box1" onclick="searchByTag(this)">Book</div>
                     </div>
-                    <button class="slide-btn btn-right" onclick="slideRight()">❯</button>
                 </div>
 
                 <!-- BÀI POST 1 -->
@@ -95,7 +133,8 @@
 
             <!-- Cụm điểm góc trên bên phải (Desktop) -->
             <div class="nav-point">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSdrxXn8fz-3TLDdFCJr4LOqfaYyYN12GNDslZhHMQfA5fzFGbKyRv5w&s=10" alt="point">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSdrxXn8fz-3TLDdFCJr4LOqfaYyYN12GNDslZhHMQfA5fzFGbKyRv5w&s=10"
+                    alt="point">
                 <p>1.000</p>
             </div>
         </div>
@@ -110,8 +149,11 @@
                         <div class="comment-content">
                             <div class="comment-header">
                                 <span class="username">@ngoc.anh</span>
-                                <svg class="heart-cmt" viewBox="0 0 24 24" width="16" height="16" onclick="toggleLike(this)">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="transparent" stroke="black" stroke-width="2" />
+                                <svg class="heart-cmt" viewBox="0 0 24 24" width="16" height="16"
+                                    onclick="toggleLike(this)">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="transparent" stroke="black" stroke-width="2" />
                                 </svg>
                             </div>
                             <p class="comment-text">Cho em hỏi quán có khu vực ngồi ngoài trời để hút thuốc không ạ</p>
@@ -146,17 +188,20 @@
                     <span class="tag-item" onclick="selectSearchTag(this)">VINTAGE</span>
                     <span class="tag-item" onclick="selectSearchTag(this)">STUDY</span>
                 </div>
-                
+
                 <div class="search-input-area">
                     <div class="avatar my-avatar"></div>
                     <!-- Thanh tìm kiếm chứa các thẻ tag đã chọn bên trong -->
-                    <div class="search-box" style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 6px 12px; background: black; border-radius: 99px;">
+                    <div class="search-box"
+                        style="display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 6px 12px; background: black; border-radius: 99px;">
                         <!-- Nơi hiển thị các tag được click -->
-                        <div id="tagPillsContainer" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
-                        
+                        <div id="tagPillsContainer"
+                            style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
+
                         <!-- Ô input để gõ tìm kiếm thủ công -->
-                        <input type="text" id="searchInput" placeholder="Tìm kiếm" oninput="showSuggestions(this)" style="flex: 1; border: none; background: transparent; outline: none; color: white; min-width: 80px; font-size: 14px;">
-                        
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm" oninput="showSuggestions(this)"
+                            style="flex: 1; border: none; background: transparent; outline: none; color: white; min-width: 80px; font-size: 14px;">
+
                         <button class="send-btn" style="background: none; border: none; cursor: pointer;">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
@@ -180,34 +225,35 @@
 
         <!-- ================= BOTTOM NAVIGATION (MOBILE ONLY) ================= -->
         <div class="mobile-bottom-nav">
-            <!-- Nút vòng tròn đen chuyển về Home -->
-            <div class="nav-circle" onclick="window.location.href='index.html'" style="cursor: pointer;">
-                <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; stroke: white; fill: none; stroke-width: 2;">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
+            <!-- Nút hình tròn chứa Avatar người dùng (Chỉ hiện ở mobile/ipad) -->
+            <div class="nav-circle user-profile-circle" onclick="handleUserClick(event)" title="Thông tin người dùng">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
                 </svg>
             </div>
-            
+
             <div class="nav-pill">
                 <!-- Nút Home -->
                 <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                     <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
-                
-                <!-- Nút Search Mở Bảng Tìm Kiếm -->
+
+                <!-- Nút Search -->
                 <svg viewBox="0 0 24 24" onclick="openSearch()" style="cursor: pointer;">
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
-                
+
                 <!-- Nút Voucher -->
                 <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;">
                     <path d="M4 7h16v10H4z" />
                     <circle cx="4" cy="12" r="2" />
                     <circle cx="20" cy="12" r="2" />
                 </svg>
-                
+
                 <!-- Nút QR Code -->
                 <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer;">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -219,168 +265,314 @@
             </div>
         </div>
 
+        <div id="loginModal" class="login-overlay" onclick="closeLoginModal(event)">
+            <div class="login-card" onclick="event.stopPropagation()">
+                <button class="close-login-btn" onclick="closeLoginModal()">&times;</button>
+                <h2 class="login-title">RE:CUP</h2>
+
+                <!-- Thanh chuyển đổi Tab: Đăng nhập / Đăng ký -->
+                <div
+                    style="display: flex; justify-content: center; gap: 30px; margin: 15px 0 25px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: 10px;">
+                    <span id="tabLoginBtn" onclick="switchTab('login')"
+                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-weight: bold; font-size: 14px; color: white; border-bottom: 2px solid white; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG
+                        NHẬP</span>
+                    <span id="tabRegisterBtn" onclick="switchTab('register')"
+                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-size: 14px; color: #888; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG
+                        KÝ</span>
+                </div>
+
+                <!-- Form Đăng Nhập -->
+                <form id="loginFormElement" onsubmit="handleLoginSubmit(event)">
+                    <div class="input-group">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
+                    </div>
+                    <button type="submit" class="btn-submit-login">ĐĂNG NHẬP</button>
+                </form>
+
+                <!-- Form Đăng Ký (Mặc định ẩn đi) -->
+                <form id="registerFormElement" onsubmit="handleRegisterSubmit(event)" style="display: none;">
+                    <div class="input-group">
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="name" placeholder="Họ và tên" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="float" name="dateBirthday" id="date" placeholder="Ngày sinh ">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="registerPassword" placeholder="Mật khẩu (ít nhất 6 ký tự)" required>
+                    </div>
+                    <button type="submit" class="btn-submit-login">ĐĂNG KÝ TÀI KHOẢN</button>
+                </form>
+
+                <div class="login-divider">
+                    <span>hoặc</span>
+                </div>
+
+                <button class="btn-google-login" onclick="loginWithGoogle()">
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                        <path fill="#4285F4"
+                            d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z" />
+                        <path fill="#34A853"
+                            d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.37 24 12 24z" />
+                        <path fill="#FBBC05"
+                            d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.99 0 12s.45 3.85 1.24 5.42l4.04-3.15z" />
+                        <path fill="#EA4335"
+                            d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.37 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z" />
+                    </svg>
+                    Tiếp tục với Google
+                </button>
+            </div>
+        </div>
+
     </div> <!-- Kết thúc Container -->
 
     <!-- Nhúng thư viện kết nối Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+
     <script>
         const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB'; 
+        const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    
-        let globalPosts = []; // Biến lưu toàn bộ bài viết
-    
+
+        let globalPosts = [];        // Lưu toàn bộ bài viết từ Supabase
+        let activeTags = [];         // Lưu danh sách các tag đang được chọn trên slider
+
         function calculateDistance(lat1, lon1, lat2, lon2) {
             if (!lat1 || !lon1 || !lat2 || !lon2) return "??";
-            const R = 6371; 
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                      Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             return (R * c).toFixed(1);
         }
-    
-        // Hàm render bài viết (chạy nhanh không cần chờ GPS)
-        function renderPosts(userLat, userLng) {
+
+        // Hàm kiểm tra trạng thái đăng nhập thông minh: Đã đăng nhập -> Vào profile.html. Chưa -> Mở Popup Login
+        async function handleUserClick(event) {
+            if (event) event.preventDefault();
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session && session.user) {
+                window.location.href = 'profile.html';
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal(event) {
+            if (!event || event.target.id === 'loginModal' || event.target.classList.contains('close-login-btn')) {
+                document.getElementById('loginModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                alert("Đăng nhập thất bại: " + error.message);
+            } else {
+                alert("Đăng nhập thành công!");
+                closeLoginModal();
+                window.location.href = 'profile.html';
+            }
+        }
+
+        async function loginWithGoogle() {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: 'google'
+            });
+            if (error) {
+                alert("Lỗi đăng nhập Google: " + error.message);
+            }
+        }
+
+        // Hàm render danh sách bài viết ra màn hình (Có áp dụng white-space để tự động xuống dòng chuẩn)
+        function renderPostList(postsToDisplay, userLat, userLng) {
             const postFeed = document.getElementById('post-feed');
-            postFeed.innerHTML = ''; 
-    
-            globalPosts.forEach(post => {
+            postFeed.innerHTML = '';
+
+            if (postsToDisplay.length === 0) {
+                postFeed.innerHTML = '<p style="padding: 50px; text-align: center; color: #888;">Không tìm thấy bài viết phù hợp với tag này.</p>';
+                return;
+            }
+
+            postsToDisplay.forEach(post => {
                 let latitude = post.lat;
-                let longitude = post.lng || post.Ing; 
-                
-                let distanceText = (userLat && userLng && latitude && longitude) 
-                    ? calculateDistance(userLat, userLng, latitude, longitude) + " km" 
+                let longitude = post.lng || post.Ing;
+
+                let distanceText = (userLat && userLng && latitude && longitude)
+                    ? calculateDistance(userLat, userLng, latitude, longitude) + " km"
                     : "Bật vị trí";
-    
+
                 let addressText = post.address ? post.address : "";
                 let mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}`;
-    
+
                 let postHTML = `
-                <div class="post-box">
-                    <div class="post-title" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                        <img class="avatar-tron" src="${post.avatar_url}" alt="avatar">
-                        <span style="font-weight: bold; font-size: 14px;">${post.shop_name}</span>
+            <div class="post-box">
+                <div class="post-title" style="display: flex; align-items: center; gap: 12px;">
+                    <img class="avatar-tron" src="${post.avatar_url}" alt="avatar">
+                    <span style="font-weight: bold; font-size: 14px;">${post.shop_name}</span>
+                </div>
+                <div class="post-details">
+                    <p class="main" style="white-space: pre-line !important;">${post.content || ''}</p>
+                    <p class="hashtag">${post.hashtags}</p>
+                </div>
+                <div class="post-image">
+                    <div class="box-item">
+                        <div class="box2 one" style="background: url('${post.img_1 || post.Image_1 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 two" style="background: url('${post.img_2 || post.Image_2 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 three" style="background: url('${post.img_3 || post.Image_3 || ''}') center/cover no-repeat;"></div>
+                        <div class="box2 four" style="background: url('${post.img_4 || post.Image_4 || ''}') center/cover no-repeat;"></div>
                     </div>
-                    <div class="post-details">
-                        <p class="main">${post.content}</p>
-                        <p class="hashtag">${post.hashtags}</p>
-                    </div>
-                    <div class="post-image">
-                        <div class="box-item">
-                            <div class="box2 one" style="background: url('${post.img_1 || post.Image_1 || ''}') center/cover no-repeat;"></div>
-                            <div class="box2 two" style="background: url('${post.img_2 || post.Image_2 || ''}') center/cover no-repeat;"></div>
-                            <div class="box2 three" style="background: url('${post.img_3 || post.Image_3 || ''}') center/cover no-repeat;"></div>
-                            <div class="box2 four" style="background: url('${post.img_4 || post.Image_4 || ''}') center/cover no-repeat;"></div>
+                </div>
+                <div class="post-react">
+                    <div class="react-left">
+                        <div class="icon heart-icon" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg></div>
+                        <div class="icon cmt-icon" onclick="openComments()"><svg viewBox="0 0 24 24" fill="#000000"><path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px" d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z"></path></svg></div>
+                        <div class="icon map-icon">
+                            <a href="${mapsLink}" target="_blank" title="Xem bản đồ địa chỉ">
+                                <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" style="width: 22px; height: 22px; transform: translateY(2px);"><g transform="translate(-1.477 -4.182)"><path d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z"></path><path d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z"></path></g></svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="post-react">
-                        <div class="react-left">
-                            <div class="icon heart-icon" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg></div>
-                            <div class="icon cmt-icon" onclick="openComments()"><svg viewBox="0 0 24 24" fill="#000000"><path fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="1.91px" d="M1.5,5.3v9.54a3.82,3.82,0,0,0,3.82,3.82H7.23v2.86L13,18.66h5.73a3.82,3.82,0,0,0,3.82-3.82V5.3a3.82,3.82,0,0,0-3.82-3.82H5.32A3.82,3.82,0,0,0,1.5,5.3Z"></path></svg></div>
-                            <div class="icon map-icon">
-                                <a href="${mapsLink}" target="_blank" title="Xem bản đồ địa chỉ">
-                                    <svg fill="#000000" viewBox="0 -2.71 29.046 29.046" style="width: 22px; height: 22px; transform: translateY(2px);"><g transform="translate(-1.477 -4.182)"><path d="M19.663,8.319a1,1,0,0,0-.606.92V26.818a1,1,0,0,0,1.394.919l8.284-3.55a2.951,2.951,0,0,0,1.788-2.712V8.14A2.951,2.951,0,0,0,26.41,5.428L19.663,8.319ZM21.057,9.9,27.2,7.266a.95.95,0,0,1,1.325.874V21.475a.952.952,0,0,1-.576.874L21.057,25.3V9.9Z"></path><path d="M11.973,4.182h-.108l-.017,0h-.023l-.014,0-.023,0-.015,0-.015,0-.032.007-.018,0-.057.015-.051.017-.01,0-.015.007-.026.01L3.265,7.813a2.951,2.951,0,0,0-1.788,2.712V23.86A2.951,2.951,0,0,0,5.59,26.572l6.321-2.709,7.7,3.85a1,1,0,0,0,1.447-.9V9.164l-.006-.059V9.1l0-.015,0-.021,0-.016,0-.016,0-.015-.013-.052-.006-.02L21,8.922l0-.01L21,8.9l0-.012,0-.008-.011-.026-.007-.017-.006-.013-.015-.032-.009-.017-.006-.011-.007-.014-.015-.024-.008-.013a.452.452,0,0,0-.034-.051l-.023-.033L20.825,8.6a.876.876,0,0,0-.089-.094l-.023-.021-.033-.027a.64.64,0,0,0-.052-.039L20.593,8.4l-.019-.012-.008-.005-.006,0c-.018-.011-.037-.021-.056-.031L12.39,4.287l-.054-.025,0,0-.015-.005-.027-.011-.01,0-.008,0-.014,0-.02-.007-.015,0-.012,0-.011,0-.014,0-.022-.005-.015,0-.016,0L12.1,4.195l-.019,0-.058-.007-.052,0Zm.97,17.961L19.057,25.2V9.857L12.943,6.8V22.143Zm-2-15.445L4.053,9.651a.952.952,0,0,0-.576.874V23.86a.95.95,0,0,0,1.325.874L10.943,22.1V6.7Z"></path></g></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="react-right" style="text-align: right;">
-                            <p class="locate" style="margin-bottom: 5px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; justify-content: flex-end; gap: 3px;">
-                                <svg viewBox="-4 0 32 32" fill="#E74C3C" style="width: 16px; height: 16px;"><path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" transform="translate(-106.000000, -413.000000)"></path></svg>
-                                ${distanceText}
-                            </p>
-                            <p class="star" style="display: inline-flex; align-items: center; justify-content: flex-end; width: 100%;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" style="width: 20px; height: 20px; margin-right: 4px;"><path d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" /></svg>
-                                ${post.rating}/10
-                            </p>
-                        </div>
+                    <div class="react-right" style="text-align: right;">
+                        <p class="locate" style="margin-bottom: 5px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; justify-content: flex-end; gap: 3px;">
+                            <svg viewBox="-4 0 32 32" fill="#E74C3C" style="width: 16px; height: 16px;"><path d="M118,422 C116.343,422 115,423.343 115,425 C115,426.657 116.343,428 118,428 C119.657,428 121,426.657 121,425 C121,423.343 119.657,422 118,422 L118,422 Z M118,430 C115.239,430 113,427.762 113,425 C113,422.238 115.239,420 118,420 C120.761,420 123,422.238 123,425 C123,427.762 120.761,430 118,430 L118,430 Z M118,413 C111.373,413 106,418.373 106,425 C106,430.018 116.005,445.011 118,445 C119.964,445.011 130,429.95 130,425 C130,418.373 124.627,413 118,413 L118,413 Z" transform="translate(-106.000000, -413.000000)"></path></svg>
+                            ${distanceText}
+                        </p>
+                        <p class="star" style="display: inline-flex; align-items: center; justify-content: flex-end; width: 100%;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" style="width: 20px; height: 20px; margin-right: 4px;"><path d="M6.03954 7.77203C3.57986 8.32856 2.35002 8.60682 2.05742 9.54773C1.76482 10.4886 2.60325 11.4691 4.2801 13.4299L4.71392 13.9372C5.19043 14.4944 5.42868 14.773 5.53586 15.1177C5.64305 15.4624 5.60703 15.8341 5.53498 16.5776L5.4694 17.2544C5.21588 19.8706 5.08912 21.1787 5.85515 21.7602C6.62118 22.3417 7.77268 21.8115 10.0757 20.7512L10.6715 20.4768C11.3259 20.1755 11.6531 20.0248 12 20.0248C12.3469 20.0248 12.6741 20.1755 13.3285 20.4768L13.9243 20.7512C16.2273 21.8115 17.3788 22.3417 18.1449 21.7602C18.9109 21.1787 18.7841 19.8706 18.5306 17.2544M19.7199 13.4299C21.3968 11.4691 22.2352 10.4886 21.9426 9.54773C21.65 8.60682 20.4201 8.32856 17.9605 7.77203L17.3241 7.62805C16.6251 7.4699 16.2757 7.39083 15.9951 7.17781C15.7144 6.96479 15.5345 6.64193 15.1745 5.99623L14.8468 5.40837C13.5802 3.13612 12.9469 2 12 2C11.0531 2 10.4198 3.13613 9.15316 5.40838" /></svg>
+                            ${post.rating}/10
+                        </p>
                     </div>
-                </div>`;
+                </div>
+            </div>`;
                 postFeed.innerHTML += postHTML;
             });
         }
-    
-        // Bắt đầu Tải dữ liệu TỐC ĐỘ CAO (Bất đồng bộ)
+
+        // Hàm lọc và áp dụng hiển thị dựa vào các Tag đang được chọn
+        function applyTagFilters(userLat, userLng) {
+            let filtered = globalPosts;
+
+            if (activeTags.length > 0) {
+                filtered = globalPosts.filter(post => {
+                    let postHashtags = (post.hashtags || '').toLowerCase();
+                    return activeTags.every(tag => postHashtags.includes(tag));
+                });
+            }
+
+            renderPostList(filtered, userLat, userLng);
+        }
+
+        let cachedLat = null;
+        let cachedLng = null;
+
+        // Tải dữ liệu ban đầu
         async function loadData() {
             const { data, error } = await supabaseClient.from('trangchu-index').select('*');
             if (!error && data) {
                 globalPosts = data;
-                renderPosts(null, null); // 1. Tải và hiện khung bài viết ngay lập tức (Chưa có GPS)
-                
-                // 2. Chạy ngầm GPS ở phía sau để không làm giật web
+                renderPostList(globalPosts, null, null);
+
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            // Khi nào có GPS thì chỉ cập nhật lại số km
-                            renderPosts(position.coords.latitude, position.coords.longitude);
+                            cachedLat = position.coords.latitude;
+                            cachedLng = position.coords.longitude;
+                            applyTagFilters(cachedLat, cachedLng);
                         },
-                        (error) => console.log("Không có quyền GPS"),
-                        { timeout: 5000 } // Chống treo máy nếu mạng lag
+                        (error) => { },
+                        { timeout: 5000 }
                     );
                 }
             }
         }
-        
-        loadData(); // Khởi chạy lập tức khi mở web
-    
-        // Các logic Giao diện (Slider, Like, Modal)
+        loadData();
+
+        // HÀM XỬ LÝ KHI BẤM VÀO CÁC Ô TAG TRÊN THANH SLIDER
+        function searchByTag(element) {
+            element.classList.toggle('active');
+            let tagName = element.innerText.trim().toLowerCase();
+
+            if (element.classList.contains('active')) {
+                if (!activeTags.includes(tagName)) {
+                    activeTags.push(tagName);
+                }
+            } else {
+                activeTags = activeTags.filter(t => t !== tagName);
+            }
+
+            applyTagFilters(cachedLat, cachedLng);
+        }
+
         const slider = document.getElementById('slider');
         function slideLeft() { slider.scrollBy({ left: -300, behavior: 'smooth' }); }
         function slideRight() { slider.scrollBy({ left: 300, behavior: 'smooth' }); }
-    
+
         function toggleLike(element) {
             element.classList.toggle('liked');
             let svg = element.querySelector('svg');
             svg.style.animation = 'none';
-            setTimeout(() => { svg.style.animation = 'heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; }, 10);
+            setTimeout(() => { svg.style.animation = 'heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);'; }, 10);
         }
-    
+
         function openComments() { document.getElementById('commentModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeComments(event) { if (event.target.id === 'commentModal') { document.getElementById('commentModal').classList.remove('active'); document.body.style.overflow = ''; } }
         function openSearch() { document.getElementById('searchModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeSearch(event) { if (event.target.id === 'searchModal') { document.getElementById('searchModal').classList.remove('active'); document.body.style.overflow = ''; } }
         function selectFilter(clickedElement) { document.querySelectorAll('.filter-item').forEach(f => f.classList.remove('active')); clickedElement.classList.add('active'); }
-    
-        // Logic Tìm kiếm KẾT HỢP Tag và Gõ Chữ
+
         function triggerSearch() {
             let keyword = document.getElementById('searchInput').value.trim().toLowerCase();
-            let activeTags = Array.from(document.querySelectorAll('.search-pill')).map(pill => pill.dataset.name.toLowerCase());
-            
+            let searchPills = Array.from(document.querySelectorAll('.search-pill')).map(pill => pill.dataset.name.toLowerCase());
+
             let sheet = document.querySelector('.search-sheet');
             let suggestionsContainer = document.querySelector('.search-suggestions');
-    
-            if (keyword.length > 0 || activeTags.length > 0) {
+
+            if (keyword.length > 0 || searchPills.length > 0) {
                 sheet.classList.add('expanded');
-                
                 let matchedPosts = globalPosts.filter(post => {
                     let name = (post.shop_name || '').toLowerCase();
                     let content = (post.content || '').toLowerCase();
                     let hashtags = (post.hashtags || '').toLowerCase();
-                    
-                    // Lọc theo chữ gõ vào Input
+
                     let matchKeyword = keyword === "" || name.includes(keyword) || content.includes(keyword) || hashtags.includes(keyword);
-                    
-                    // Lọc theo các Tag đã gắn trên thanh
-                    let matchTags = activeTags.every(tag => name.includes(tag) || content.includes(tag) || hashtags.includes(tag));
-                    
-                    return matchKeyword && matchTags;
+                    let matchPills = searchPills.every(tag => name.includes(tag) || content.includes(tag) || hashtags.includes(tag));
+                    return matchKeyword && matchPills;
                 });
-    
+
                 let html = `<p class="suggestion-title" style="margin-bottom: 10px; font-size: 11px; color: #888; font-weight: bold;">ĐỀ XUẤT TÌM KIẾM</p>`;
                 if (matchedPosts.length > 0) {
                     matchedPosts.forEach(post => {
                         html += `
-                            <div class="suggestion-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
-                                <img src="${post.avatar_url}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                                <div style="flex: 1;">
-                                    <p style="font-weight: bold; font-size: 14px; margin: 0; color: #000;">${post.shop_name}</p>
-                                    <p style="font-size: 12px; color: #666; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">${post.content}</p>
-                                </div>
+                        <div class="suggestion-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;">
+                            <img src="${post.avatar_url}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <p style="font-weight: bold; font-size: 14px; margin: 0; color: #000;">${post.shop_name}</p>
+                                <p style="font-size: 12px; color: #666; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">${post.content}</p>
                             </div>
-                        `;
+                        </div>
+                    `;
                     });
                 } else {
                     html += `<p style="font-size: 13px; color: #888; padding: 10px 0;">Không tìm thấy kết quả phù hợp</p>`;
@@ -391,15 +583,12 @@
                 suggestionsContainer.innerHTML = `<p class="suggestion-title">ĐỀ XUẤT TÌM KIẾM</p>`;
             }
         }
-    
-        // Gắn trigger cho ô gõ chữ
+
         function showSuggestions(inputField) { triggerSearch(); }
-    
-        // Gắn tag vào thanh search
+
         function selectSearchTag(element) {
             let tagName = element.innerText.trim();
             let container = document.getElementById('tagPillsContainer');
-            
             let existing = container.querySelectorAll('.search-pill');
             if (!Array.from(existing).some(tag => tag.dataset.name === tagName)) {
                 let pill = document.createElement('span');
@@ -410,15 +599,184 @@
                 container.appendChild(pill);
             }
             document.getElementById('searchInput').focus();
-            triggerSearch(); // Bấm cái lọc luôn
+            triggerSearch();
         }
-    
-        // Xóa tag
+
         function removeSearchTag(closeBtn) {
             closeBtn.parentElement.remove();
             document.getElementById('searchInput').focus();
-            triggerSearch(); // Xóa xong tự cập nhật lại danh sách tìm kiếm
+            triggerSearch();
         }
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginFormElement');
+            const registerForm = document.getElementById('registerFormElement');
+            const tabLogin = document.getElementById('tabLoginBtn');
+            const tabRegister = document.getElementById('tabRegisterBtn');
+
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                tabLogin.style.color = 'white';
+                tabLogin.style.borderBottom = '2px solid white';
+                tabRegister.style.color = '#888';
+                tabRegister.style.borderBottom = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                tabRegister.style.color = 'white';
+                tabRegister.style.borderBottom = '2px solid white';
+                tabLogin.style.color = '#888';
+                tabLogin.style.borderBottom = 'none';
+            }
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const loginCard = document.querySelector('.login-card');
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                // Đổi màu input sang đỏ
+                emailInput.classList.add('input-error');
+                passwordInput.classList.add('input-error');
+
+                // Kích hoạt hiệu ứng lắc khung
+                loginCard.classList.add('shake');
+                setTimeout(() => {
+                    loginCard.classList.remove('shake');
+                }, 400);
+            } else {
+                emailInput.classList.remove('input-error');
+                passwordInput.classList.remove('input-error');
+                closeLoginModal();
+                window.location.href = 'profile.html';
+            }
+        }
+
+        // Xử lý Đăng ký tài khoản (Vừa viền đỏ vừa lắc khung)
+        async function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('registerEmail');
+            const passwordInput = document.getElementById('registerPassword');
+            const loginCard = document.querySelector('.login-card');
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const fullName = document.getElementById('name').value.trim();
+            const birthday = document.getElementById('date').value.trim();
+
+            if (password.length < 6) {
+                passwordInput.classList.add('input-error');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 400);
+                return;
+            }
+
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullName,
+                        birthday: birthday
+                    }
+                }
+            });
+
+            if (error) {
+                emailInput.classList.add('input-error');
+                passwordInput.classList.add('input-error');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 400);
+            } else {
+                emailInput.classList.remove('input-error');
+                passwordInput.classList.remove('input-error');
+                closeLoginModal();
+                window.location.href = 'profile.html';
+            }
+        }
+
+        // Tự động mất viền đỏ khi người dùng gõ lại
+        document.querySelectorAll('.input-group input').forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('input-error');
+            });
+        });
+        async function checkAuthAndRenderMenu() {
+    if (typeof supabaseClient === 'undefined') return;
+
+    // Lấy thông tin phiên làm việc hiện tại từ Supabase
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    const authText = document.getElementById('menuAuthText');
+    const authIcon = document.getElementById('menuAuthIcon');
+
+    if (session && session.user) {
+        // 1. Đã đăng nhập: Đổi chữ "Log in" thành "Profile"
+        if (authText) authText.innerText = 'Profile';
+
+        // 2. Đổi icon Login thành biểu tượng Avatar/User hình tròn
+        if (authIcon) {
+            authIcon.setAttribute('viewBox', '0 0 24 24');
+            authIcon.setAttribute('fill', 'none');
+            authIcon.setAttribute('stroke', 'black');
+            authIcon.setAttribute('stroke-width', '1.5');
+            authIcon.innerHTML = `
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            `;
+        }
+    } else {
+        // Chưa đăng nhập: Giữ nguyên icon & chữ Log in mặc định
+        if (authText) authText.innerText = 'Log in';
+        if (authIcon) {
+            authIcon.innerHTML = `
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+            `;
+        }
+    }
+}
+
+// Hàm xử lý sự kiện bấm vào nút Login / Avatar
+async function handleAuthClick(e) {
+    if (e) e.preventDefault();
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (session && session.user) {
+        // Đã đăng nhập -> Bấm vào Avatar sẽ nhảy thẳng sang trang profile.html
+        window.location.href = 'profile.html';
+    } else {
+        // Chưa đăng nhập -> Bấm vào Log in sẽ mở Modal Đăng nhập (hoặc về trang chủ nếu đang ở trang khác)
+        if (typeof openLoginModal === 'function') {
+            openLoginModal();
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+}
+
+// Lắng nghe trạng thái Auth thay đổi (Đăng nhập / Đăng xuất) để đổi giao diện tức thì
+if (typeof supabaseClient !== 'undefined') {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+        checkAuthAndRenderMenu();
+    });
+}
+
+// Chạy kiểm tra khi vừa tải trang
+document.addEventListener('DOMContentLoaded', checkAuthAndRenderMenu);
     </script>
 </body>
+
 </html>

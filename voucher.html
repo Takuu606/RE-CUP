@@ -7,6 +7,8 @@
     <!-- Nhúng Font chữ chuẩn thiết kế -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="voucher.css">
+    <!-- Nhúng thư viện Supabase JS SDK (BẮT BUỘC ĐỂ ĐỒNG BỘ LOGIN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <div class="container">
@@ -58,6 +60,18 @@
                                 <path d="M2.5116 12.1548H18.4884" stroke="#0F0F0F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p class="icon-text">Qr code</p>
+                        </a>
+                    </li>
+                    <!-- Log in / Profile (DESKTOP) -->
+                    <li class="menu-icon" id="menuAuthItem">
+                        <a href="#" id="menuAuthLink" onclick="handleAuthClick(event)">
+                            <svg id="menuAuthIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                <polyline points="10 17 15 12 10 7" />
+                                <line x1="15" y1="12" x2="3" y2="12" />
+                            </svg>
+                            <p class="icon-text" id="menuAuthText">Log in</p>
                         </a>
                     </li>
                 </ul>
@@ -162,37 +176,32 @@
     </div> <!-- /Container -->
 
     <!-- ================= THANH MENU ĐÁY (MOBILE) ================= -->
-    <!-- Đã fix định dạng Viên Thuốc (Pill) và liên kết onclick -->
     <div class="mobile-bottom-nav">
-        <!-- Nút vòng tròn đen (Có thể gắn link về trang chủ hoặc tuỳ ý bạn) -->
-        <div class="nav-circle" onclick="window.location.href='index.html'"></div>
+        <div class="nav-circle user-profile-circle" onclick="handleUserClick(event)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </div>
         
         <div class="nav-pill">
-            <!-- 1. Nút Home -> Chuyển về index.html -->
             <svg viewBox="0 0 24 24" onclick="window.location.href='index.html'" style="cursor: pointer;">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            
-            <!-- 2. Nút Search -> Vẫn giữ nguyên hàm mở bảng tìm kiếm -->
             <svg viewBox="0 0 24 24" onclick="openSearch()" style="cursor: pointer;">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
-            
-            <!-- 3. Nút Voucher -> Chuyển sang trang voucher.html -->
             <svg viewBox="0 0 24 24" onclick="window.location.href='voucher.html'" style="cursor: pointer;">
                 <path d="M4 7h16v10H4z" />
                 <circle cx="4" cy="12" r="2" />
                 <circle cx="20" cy="12" r="2" />
             </svg>
-            
-            <!-- 4. Nút QR Code -> Chuyển sang trang qr-code.html -->
             <svg viewBox="0 0 24 24" onclick="window.location.href='QR.html'" style="cursor: pointer;">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                 <rect x="7" y="7" width="3" height="3" />
                 <rect x="14" y="7" width="3" height="3" />
-                <rect x="7" y="14" width="3" height="3" />
                 <rect x="14" y="14" width="3" height="3" />
             </svg>
         </div>
@@ -245,9 +254,65 @@
             <p class="modal-text">“Bạn vừa thành công giúp giảm thiểu 1 chiếc cốc nhựa. Hành động nhỏ kết quả lớn.”</p>
         </div>
     </div>
+
+    <!-- ================= POPUP ĐĂNG NHẬP (LOGIN MODAL) ================= -->
+    <div id="loginModal" class="login-overlay" onclick="closeLoginModal(event)">
+        <div class="login-card" onclick="event.stopPropagation()">
+            <button class="close-login-btn" onclick="closeLoginModal()">&times;</button>
+            <h2 class="login-title">RE:CUP</h2>
+
+            <div style="display: flex; justify-content: center; gap: 30px; margin: 15px 0 25px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: 10px;">
+                <span id="tabLoginBtn" onclick="switchTab('login')" style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-weight: bold; font-size: 14px; color: white; border-bottom: 2px solid white; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG NHẬP</span>
+                <span id="tabRegisterBtn" onclick="switchTab('register')" style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-size: 14px; color: #888; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG KÝ</span>
+            </div>
+
+            <!-- Form Đăng Nhập -->
+            <form id="loginFormElement" onsubmit="handleLoginSubmit(event)">
+                <div class="input-group">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
+                </div>
+                <button type="submit" class="btn-submit-login">ĐĂNG NHẬP</button>
+            </form>
+
+            <!-- Form Đăng Ký -->
+            <form id="registerFormElement" onsubmit="handleRegisterSubmit(event)" style="display: none;">
+                <div class="input-group">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Họ và tên" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="registerPassword" placeholder="Mật khẩu (ít nhất 6 ký tự)" required>
+                </div>
+                <button type="submit" class="btn-submit-login">ĐĂNG KÝ TÀI KHOẢN</button>
+            </form>
+
+            <div class="login-divider">
+                <span>hoặc</span>
+            </div>
+
+            <button class="btn-google-login" onclick="loginWithGoogle()">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z" />
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.37 24 12 24z" />
+                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.99 0 12s.45 3.85 1.24 5.42l4.04-3.15z" />
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.37 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z" />
+                </svg>
+                Tiếp tục với Google
+            </button>
+        </div>
+    </div>
     
-    <!-- ================= JAVASCRIPT CHUNG ================= -->
+    <!-- ================= JAVASCRIPT XỬ LÝ SUPABASE & AUTH ================= -->
     <script>
+        const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         // JS Filter
         function selectFilter(clickedElement) {
             let filters = clickedElement.parentElement.querySelectorAll('.filter-item');
@@ -284,6 +349,180 @@
                 sheet.classList.remove('expanded');
             }
         }
+
+        // --- XỬ LÝ AUTHENTICATION DÙNG CHUNG VOI INDEX ---
+        async function handleUserClick(event) {
+            if (event) event.preventDefault();
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session && session.user) {
+                window.location.href = 'profile.html';
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal(event) {
+            if (!event || event.target.id === 'loginModal' || event.target.classList.contains('close-login-btn')) {
+                document.getElementById('loginModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginFormElement');
+            const registerForm = document.getElementById('registerFormElement');
+            const tabLogin = document.getElementById('tabLoginBtn');
+            const tabRegister = document.getElementById('tabRegisterBtn');
+
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                tabLogin.style.color = 'white';
+                tabLogin.style.borderBottom = '2px solid white';
+                tabRegister.style.color = '#888';
+                tabRegister.style.borderBottom = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                tabRegister.style.color = 'white';
+                tabRegister.style.borderBottom = '2px solid white';
+                tabLogin.style.color = '#888';
+                tabLogin.style.borderBottom = 'none';
+            }
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const loginCard = document.querySelector('.login-card');
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                emailInput.classList.add('input-error');
+                passwordInput.classList.add('input-error');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 400);
+            } else {
+                emailInput.classList.remove('input-error');
+                passwordInput.classList.remove('input-error');
+                closeLoginModal();
+                window.location.href = 'profile.html';
+            }
+        }
+
+        async function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('registerEmail');
+            const passwordInput = document.getElementById('registerPassword');
+            const loginCard = document.querySelector('.login-card');
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const fullName = document.getElementById('name').value.trim();
+
+            if (password.length < 6) {
+                passwordInput.classList.add('input-error');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 400);
+                return;
+            }
+
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: { data: { full_name: fullName } }
+            });
+
+            if (error) {
+                emailInput.classList.add('input-error');
+                passwordInput.classList.add('input-error');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 400);
+            } else {
+                emailInput.classList.remove('input-error');
+                passwordInput.classList.remove('input-error');
+                closeLoginModal();
+                window.location.href = 'profile.html';
+            }
+        }
+
+        async function loginWithGoogle() {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google' });
+            if (error) alert("Lỗi đăng nhập Google: " + error.message);
+        }
+
+        // Tự động kiểm tra trạng thái Đăng nhập và cập nhật Menu
+        async function checkAuthAndRenderMenu() {
+            if (typeof supabaseClient === 'undefined') return;
+
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                const authText = document.getElementById('menuAuthText');
+                const authIcon = document.getElementById('menuAuthIcon');
+
+                if (session && session.user) {
+                    // Đã đăng nhập -> Đổi chữ thành "Profile" và icon thành Avatar/User
+                    if (authText) authText.innerText = 'Profile';
+                    if (authIcon) {
+                        authIcon.setAttribute('viewBox', '0 0 24 24');
+                        authIcon.setAttribute('fill', 'none');
+                        authIcon.setAttribute('stroke', 'currentColor');
+                        authIcon.setAttribute('stroke-width', '1.5');
+                        authIcon.innerHTML = `
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        `;
+                    }
+                } else {
+                    // Chưa đăng nhập -> Giữ nguyên Log in
+                    if (authText) authText.innerText = 'Log in';
+                    if (authIcon) {
+                        authIcon.innerHTML = `
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                            <polyline points="10 17 15 12 10 7" />
+                            <line x1="15" y1="12" x2="3" y2="12" />
+                        `;
+                    }
+                }
+            } catch (err) {
+                console.error("Lỗi kiểm tra auth:", err);
+            }
+        }
+
+        async function handleAuthClick(e) {
+            if (e) e.preventDefault();
+            if (typeof supabaseClient === 'undefined') return;
+            
+            const { data: { session } } = await supabaseClient.auth.getSession();
+
+            if (session && session.user) {
+                window.location.href = 'profile.html';
+            } else {
+                openLoginModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthAndRenderMenu();
+            if (typeof supabaseClient !== 'undefined') {
+                supabaseClient.auth.onAuthStateChange(() => {
+                    checkAuthAndRenderMenu();
+                });
+            }
+        });
     </script>
 </body>
 </html>
