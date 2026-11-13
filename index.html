@@ -233,7 +233,8 @@
         <div class="menu-popup-overlay" id="menuPopupModal" onclick="closeMenuPopup(event)">
             <div class="menu-popup-sheet" onclick="event.stopPropagation()">
                 <div class="drag-handle"></div>
-                <div style="text-align: center; font-family: 'Source Code Pro', monospace; font-size: 16px; font-weight: bold; padding: 5px 0 10px 0; border-bottom: 1px solid #eee;">
+                <div
+                    style="text-align: center; font-family: 'Source Code Pro', monospace; font-size: 16px; font-weight: bold; padding: 5px 0 10px 0; border-bottom: 1px solid #eee;">
                     MENU QUÁN
                 </div>
                 <div class="menu-images-list" id="menuImagesContainer"></div>
@@ -242,8 +243,26 @@
 
         <!-- ================= LIGHTBOX PHÓNG TO ẢNH ================= -->
         <div class="image-lightbox-overlay" id="imageLightbox" onclick="closeLightbox()">
-            <button class="image-lightbox-close">&times;</button>
-            <img id="lightboxImg" src="" alt="Zoomed Image">
+            <button class="image-lightbox-close" onclick="closeLightbox()">×</button>
+            
+            <!-- Nút lùi ảnh trước -->
+            <button class="lightbox-nav-btn prev is-hidden" id="lightboxPrevBtn" onclick="changeLightboxImage(-1, event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <img id="lightboxImg" src="" alt="Zoomed Image" onclick="event.stopPropagation()">
+
+            <!-- Nút sang ảnh tiếp theo -->
+            <button class="lightbox-nav-btn next is-hidden" id="lightboxNextBtn" onclick="changeLightboxImage(1, event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Bộ đếm 1/4 -->
+            <div class="lightbox-counter is-hidden" id="lightboxCounter">1 / 4</div>
         </div>
 
         <!-- ================= BOTTOM NAVIGATION (MOBILE ONLY) ================= -->
@@ -286,11 +305,14 @@
                 <button class="close-login-btn" onclick="closeLoginModal()">&times;</button>
                 <h2 class="login-title">RE:CUP</h2>
 
-                <div style="display: flex; justify-content: center; gap: 30px; margin: 15px 0 25px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: 10px;">
+                <div
+                    style="display: flex; justify-content: center; gap: 30px; margin: 15px 0 25px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: 10px;">
                     <span id="tabLoginBtn" onclick="switchTab('login')"
-                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-weight: bold; font-size: 14px; color: white; border-bottom: 2px solid white; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG NHẬP</span>
+                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-weight: bold; font-size: 14px; color: white; border-bottom: 2px solid white; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG
+                        NHẬP</span>
                     <span id="tabRegisterBtn" onclick="switchTab('register')"
-                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-size: 14px; color: #888; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG KÝ</span>
+                        style="cursor: pointer; font-family: 'Source Code Pro', monospace; font-size: 14px; color: #888; padding-bottom: 5px; transition: all 0.2s;">ĐĂNG
+                        KÝ</span>
                 </div>
 
                 <form id="loginFormElement" onsubmit="handleLoginSubmit(event)">
@@ -348,6 +370,7 @@
         const SUPABASE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_28EaGfzRhxdSeCF17VEowg_acxaHuGB';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const HEART_TREE_URL = 'https://eorsqenkghzwmfkktzad.supabase.co/storage/v1/object/sign/post-images/heart-icon/heart.png?token=eyJraWQiOiJiOWFmMDliYS1lY2ZhLTQ3N2YtYWFkMS02NDU2MGFhOTI0NGUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJwb3N0LWltYWdlcy9oZWFydC1pY29uL2hlYXJ0LnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTQ1NzI1NjksImV4cCI6MjEwOTkzMjU2OX0.XwxSsX1L9g87qLnVutkApOJVct8arv3dTh0AhDTuvS83VWCSMEQU3VaGmEIYxlDxUa3OTU2UZt2S9JxE11QYbw';
 
         let globalPosts = [];
         let activeTags = [];
@@ -446,19 +469,23 @@
                 </div>
                 <div class="post-image">
                     <div class="box-item">
-                        <div class="box2 one" onclick="openLightbox('${post.img_1 || post.Image_1 || ''}')" style="background: url('${post.img_1 || post.Image_1 || ''}') center/cover no-repeat; cursor: pointer;"></div>
-                        <div class="box2 two" onclick="openLightbox('${post.img_2 || post.Image_2 || ''}')" style="background: url('${post.img_2 || post.Image_2 || ''}') center/cover no-repeat; cursor: pointer;"></div>
-                        <div class="box2 three" onclick="openLightbox('${post.img_3 || post.Image_3 || ''}')" style="background: url('${post.img_3 || post.Image_3 || ''}') center/cover no-repeat; cursor: pointer;"></div>
-                        <div class="box2 four" onclick="openLightbox('${post.img_4 || post.Image_4 || ''}')" style="background: url('${post.img_4 || post.Image_4 || ''}') center/cover no-repeat; cursor: pointer;"></div>
+                        <div class="box2 one" data-img="${post.img_1 || post.Image_1 || ''}" onclick="openLightbox('${post.img_1 || post.Image_1 || ''}', this)" style="background: url('${post.img_1 || post.Image_1 || ''}') center/cover no-repeat; cursor: pointer;"></div>
+                        <div class="box2 two" data-img="${post.img_2 || post.Image_2 || ''}" onclick="openLightbox('${post.img_2 || post.Image_2 || ''}', this)" style="background: url('${post.img_2 || post.Image_2 || ''}') center/cover no-repeat; cursor: pointer;"></div>
+                        <div class="box2 three" data-img="${post.img_3 || post.Image_3 || ''}" onclick="openLightbox('${post.img_3 || post.Image_3 || ''}', this)" style="background: url('${post.img_3 || post.Image_3 || ''}') center/cover no-repeat; cursor: pointer;"></div>
+                        <div class="box2 four" data-img="${post.img_4 || post.Image_4 || ''}" onclick="openLightbox('${post.img_4 || post.Image_4 || ''}', this)" style="background: url('${post.img_4 || post.Image_4 || ''}') center/cover no-repeat; cursor: pointer;"></div>
                     </div>
                 </div>
                 <div class="post-react">
                     <div class="react-left">
-                        <!-- Icon Tim -->
-                        <div class="icon heart-icon" onclick="toggleLike(this)">
-                            <svg viewBox="0 0 24 24">
+                        <!-- Icon Tim Motion Graphic -->
+                        <div class="icon heart-icon" onclick="toggleLike(this)" title="Yêu thích">
+                            <svg class="default-heart" viewBox="0 0 24 24">
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg>
+                            <img class="tree-layer layer-roots" src="${HEART_TREE_URL}" alt="">
+                            <img class="tree-layer layer-trunk" src="${HEART_TREE_URL}" alt="">
+                            <img class="tree-layer layer-canopy" src="${HEART_TREE_URL}" alt="">
+                            <img class="tree-layer layer-full" src="${HEART_TREE_URL}" alt="Liked Tree">
                         </div>
                         <!-- Icon Comment -->
                         <div class="icon cmt-icon" onclick="openComments()">
@@ -572,14 +599,11 @@
 
         function toggleLike(element) {
             element.classList.toggle('liked');
-            let svg = element.querySelector('svg');
-            svg.style.animation = 'none';
-            setTimeout(() => { svg.style.animation = 'heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; }, 10);
         }
 
         function openComments() { document.getElementById('commentModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeComments(event) { if (event.target.id === 'commentModal') { document.getElementById('commentModal').classList.remove('active'); document.body.style.overflow = ''; } }
-        
+
         function openSearch() {
             document.getElementById('searchModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -754,7 +778,7 @@
 
         function openMenuPopup(menuArray) {
             const container = document.getElementById('menuImagesContainer');
-            container.innerHTML = '';
+            container.innerHTML += `<img class="menu-img-item" src="${url}" onclick="openLightbox('${url}', this)" style="cursor: pointer;" alt="Menu quán">`;
 
             if (Array.isArray(menuArray) && menuArray.length > 0) {
                 menuArray.forEach(url => {
@@ -777,14 +801,68 @@
             }
         }
 
-        function openLightbox(imgSrc) {
-            if (!imgSrc || imgSrc.trim() === '') return;
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
+        let currentLightboxList = [];
+        let currentLightboxIndex = 0;
 
-            lightboxImg.src = imgSrc;
-            lightbox.classList.add('active');
+        function openLightbox(imgSrc, triggerEl = null) {
+            if (!imgSrc || imgSrc.trim() === '') return;
+
+            currentLightboxList = [imgSrc];
+            currentLightboxIndex = 0;
+
+            // Nếu bấm vào 1 trong 4 ảnh bài post -> Lấy danh sách 4 ảnh của bài post đó
+            if (triggerEl && triggerEl.closest('.box-item')) {
+                const boxes = triggerEl.closest('.box-item').querySelectorAll('.box2');
+                currentLightboxList = Array.from(boxes)
+                    .map(box => box.dataset.img)
+                    .filter(url => url && url.trim() !== '');
+                currentLightboxIndex = currentLightboxList.indexOf(imgSrc);
+            }
+            // Nếu bấm vào ảnh trong Menu -> Lấy danh sách các ảnh Menu để lướt xem
+            else if (triggerEl && triggerEl.closest('#menuImagesContainer')) {
+                const imgs = triggerEl.closest('#menuImagesContainer').querySelectorAll('.menu-img-item');
+                currentLightboxList = Array.from(imgs)
+                    .map(img => img.getAttribute('src'))
+                    .filter(url => url && url.trim() !== '');
+                currentLightboxIndex = currentLightboxList.indexOf(imgSrc);
+            }
+
+            if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+
+            updateLightboxView();
+            document.getElementById('imageLightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightboxView() {
+            const lightboxImg = document.getElementById('lightboxImg');
+            const prevBtn = document.getElementById('lightboxPrevBtn');
+            const nextBtn = document.getElementById('lightboxNextBtn');
+            const counter = document.getElementById('lightboxCounter');
+            const total = currentLightboxList.length;
+
+            lightboxImg.src = currentLightboxList[currentLightboxIndex];
+
+            // Ẩn/hiện nút qua lại và bộ đếm giống Instagram
+            if (total <= 1) {
+                prevBtn.classList.add('is-hidden');
+                nextBtn.classList.add('is-hidden');
+                counter.classList.add('is-hidden');
+            } else {
+                prevBtn.classList.toggle('is-hidden', currentLightboxIndex === 0);
+                nextBtn.classList.toggle('is-hidden', currentLightboxIndex === total - 1);
+                counter.classList.remove('is-hidden');
+                counter.innerText = `${currentLightboxIndex + 1} / ${total}`;
+            }
+        }
+
+        function changeLightboxImage(direction, event) {
+            if (event) event.stopPropagation(); // Giữ không cho đóng khung zoom khi bấm nút
+            const newIndex = currentLightboxIndex + direction;
+            if (newIndex >= 0 && newIndex < currentLightboxList.length) {
+                currentLightboxIndex = newIndex;
+                updateLightboxView();
+            }
         }
 
         function closeLightbox() {
@@ -792,6 +870,15 @@
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
+
+        // Hỗ trợ bấm phím mũi tên Trái / Phải trên bàn phím khi đang phóng to ảnh
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('imageLightbox');
+            if (!lightbox || !lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowRight') changeLightboxImage(1);
+            if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+            if (e.key === 'Escape') closeLightbox();
+        });
     </script>
 </body>
 

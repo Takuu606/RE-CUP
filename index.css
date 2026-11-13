@@ -379,7 +379,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 7% 15px 7%;
+    padding: 25px 3% 15px 3%; 
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .react-left {
@@ -406,6 +408,99 @@ body {
     width: 28px;
     height: 28px;
     display: block;
+}
+
+/* ================= MOTION GRAPHIC CÂY TRÁI TIM ================= */
+.react-left .heart-icon {
+    position: relative;
+    overflow: visible !important;
+}
+
+.heart-icon .default-heart {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.heart-icon .default-heart path {
+    fill: transparent;
+    stroke: #000;
+    stroke-width: 2px;
+}
+
+.heart-icon .tree-layer {
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Cắt 3 phần của cây bằng clip-path */
+.heart-icon .layer-canopy {
+    -webkit-clip-path: inset(0% 0% 27% 0%);
+    clip-path: inset(0% 0% 27% 0%);
+    transform-origin: 50% 72%;
+    transform: scale(0);
+}
+
+.heart-icon .layer-trunk {
+    -webkit-clip-path: inset(72% 0% 17% 0%);
+    clip-path: inset(72% 0% 17% 0%);
+    transform-origin: 50% 83%;
+    transform: scaleY(0);
+}
+
+.heart-icon .layer-roots {
+    -webkit-clip-path: inset(82% 0% 0% 0%);
+    clip-path: inset(82% 0% 0% 0%);
+    transform-origin: 50% 83%;
+    transform: scale(0);
+}
+
+/* Khi bấm vào (.liked): Ẩn tim đen & chạy hiệu ứng mọc cây */
+.heart-icon.liked .default-heart {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.heart-icon.liked .layer-trunk {
+    animation: exactTrunkGrow 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+.heart-icon.liked .layer-roots {
+    animation: exactRootsSpread 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+.heart-icon.liked .layer-canopy {
+    animation: exactCanopyBloom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.16s forwards;
+}
+
+.heart-icon.liked .layer-full {
+    animation: exactLockIn 0.15s ease 0.72s forwards;
+}
+
+@keyframes exactTrunkGrow {
+    0% { transform: scaleY(0) scaleX(0.5); opacity: 0; }
+    100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+}
+
+@keyframes exactRootsSpread {
+    0% { transform: scale(0.2, 0); opacity: 0; }
+    70% { transform: scale(1.08, 1.05); opacity: 1; }
+    100% { transform: scale(1, 1); opacity: 1; }
+}
+
+@keyframes exactCanopyBloom {
+    0% { transform: scale(0) translateY(6px); opacity: 0; }
+    55% { transform: scale(1.22, 1.15) translateY(-2px) rotate(-2deg); opacity: 1; }
+    78% { transform: scale(0.96, 1.03) rotate(1.5deg); opacity: 1; }
+    100% { transform: scale(1, 1) translateY(0) rotate(0deg); opacity: 1; }
+}
+
+@keyframes exactLockIn {
+    to { opacity: 1; }
 }
 
 .heart-icon svg path {
@@ -611,6 +706,88 @@ body {
     border: none;
     outline: none;
     z-index: 1000000;
+}
+/* Nút bấm chuyển ảnh Trái / Phải khi đang phóng to (Instagram-style) */
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.lightbox-nav-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: #111;
+}
+
+.lightbox-nav-btn:hover {
+    background: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.lightbox-nav-btn.prev {
+    left: 25px;
+}
+
+.lightbox-nav-btn.next {
+    right: 25px;
+}
+
+/* Ẩn nút khi ở ảnh đầu/cuối hoặc khi chỉ xem 1 ảnh đơn (như Avatar) */
+.lightbox-nav-btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.8);
+}
+
+/* Bộ đếm số thứ tự ảnh (1 / 4) ở dưới màn hình zoom */
+.lightbox-counter {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 99px;
+    z-index: 1000000;
+    pointer-events: none;
+}
+
+.lightbox-counter.is-hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .lightbox-nav-btn {
+        width: 36px;
+        height: 36px;
+    }
+    .lightbox-nav-btn.prev { left: 12px; }
+    .lightbox-nav-btn.next { right: 12px; }
 }
 
 .comment-list {
